@@ -1,0 +1,19 @@
+body {
+  background-color: lightblue;
+}
+
+.section {
+	text-align: center;
+	padding: 2rem 0 2rem;
+}
+
+div.section.cards div.container div.row {
+	border-top: 1px solid #eee;
+	padding: 2rem 0 0;
+}
+
+.cards img {
+	max-width: 150px;
+	height: auto;
+}
+
