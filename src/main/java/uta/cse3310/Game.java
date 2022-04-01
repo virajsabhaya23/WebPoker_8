@@ -26,6 +26,9 @@ public class Game {
         // deletes the player from the players array
         // and does whatever else is needed to remove
         // the player from the game.
+
+        // TODO: FIX THIS WHEN PLAYERID = 0
+        // RETURNS WITH IndexOutOfBoundsException
         players.remove(playerid - 1);
     }
 

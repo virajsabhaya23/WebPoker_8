@@ -1,16 +1,15 @@
-var connection = null;
 var cardIdx = 0;
 var playerID = 0;
 var serverUrl = "ws://" + window.location.hostname + ":8888";
+const connection = new WebSocket(serverUrl);
+var cardLUT;
 
-connection = new WebSocket(serverUrl);
-
-connection.onopen = function (evt) {
-	console.log("open");
+connection.onopen = function (e) {
+	console.log("connection opened");
 };
 
 connection.onmessage = function (evt) {
-	var msg;
+	let msg;
 	msg = evt.data;
 
 	console.log("Message received: ");
@@ -50,13 +49,23 @@ connection.onmessage = function (evt) {
 			"img/KC.svg",
 			"img/6D.svg",
 			"img/2J.svg",
-			"img/2S.svg",
+			"img/2S.svg"
 		];
 		document.getElementById("card4").src = cardLUT[cardIdx];
 		cardIdx = cardIdx + 1;
-		if (cardIdx > 6) cardIdx = 0;
+		if (cardIdx > 6) {
+			cardIdx = 0;
+		}
 	}
 	console.log("the cardIdx is " + cardIdx);
+};
+
+connection.onclose = function(event) {
+	if (event.wasClean) {
+		console.log("connection closed");
+	} else {
+		console.log("connection died");
+	}
 };
 
 function send() {
