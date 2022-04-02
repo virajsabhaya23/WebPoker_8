@@ -18,9 +18,7 @@ public class Hand {
     
     private HashMap<Card.Value, Integer> counts = new HashMap<>();
     
-    public Hand() {
-    	
-    }
+    public Hand() {}
 
     public Card[] sort(Hand hnd) {
     	int i, j;

@@ -1,10 +1,13 @@
+package uta.cse3310;
+
 // Fig. 7.10: DeckOfCards.java
 // DeckOfCards class represents a deck of playing cards.
 //Reference: https://cs.smu.ca/~porter/csc/465/code/deitel/examples/ch07/fig07_09_11/DeckOfCards.java2html
 import java.util.Random;
-package uta.cse3310;
+import uta.cse3310.Card.Value;
+import uta.cse3310.Card.Suite;
 
-public class DeckOfCards
+public class Deck
 {
    private Card deck[]; // array of Card objects
    private int currentCard; // index of next Card to be dealt
@@ -12,9 +15,8 @@ public class DeckOfCards
    private Random randomNumbers; // random number generator
 
    // constructor fills deck of Cards
-   public DeckOfCards()
+   public Deck()
    {
-
       Value[] card_values = Card.Value.values();
       Suite[] card_suites = Card.Suite.values();
       Card[] deck = new Card[ NUMBER_OF_CARDS ]; // create array of Card objects
@@ -24,7 +26,7 @@ public class DeckOfCards
       // populate deck with Card objects
       for ( int count = 0; count < deck.length; count++ ){
          deck[count].suite = card_suites[count];
-         deck[count].value = card_value[count];
+         deck[count].value = card_values[count];
       }
    } // end DeckOfCards constructor
 
@@ -51,10 +53,10 @@ public class DeckOfCards
    public Card dealCard()
    {
       // determine whether Cards remain to be dealt
-      if ( currentCard < deck.length )
-         return deck[ currentCard++ ]; // return current Card in array
-      else        
-         return null; // return null to indicate that all Cards were dealt
+         if ( currentCard < deck.length )
+            return deck[ currentCard++ ]; // return current Card in array
+         else        
+            return null; // return null to indicate that all Cards were dealt
    } // end method dealCard
 } // end class DeckOfCards
 
