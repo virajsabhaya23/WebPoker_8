@@ -36,6 +36,8 @@ public class HttpServer {
             HTTPServer server = new HTTPServer(port);
             VirtualHost host = server.getVirtualHost(null); // default host
             host.setAllowGeneratedIndex(true); // with directory index pages
+            
+            // make changes here....
             host.addContext("/", new FileContextHandler(dir));
             host.addContext("/api/time", new ContextHandler() {
                 public int serve(Request req, Response resp) throws IOException {

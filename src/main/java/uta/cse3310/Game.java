@@ -29,6 +29,7 @@ public class Game {
 
         // TODO: FIX THIS WHEN PLAYERID = 0
         // RETURNS WITH IndexOutOfBoundsException
+        
         players.remove(playerid - 1);
     }
 

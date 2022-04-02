@@ -39,7 +39,7 @@ connection.onmessage = function (evt) {
 			playerID;
 	} else {
 		// process the game state
-		// this will just have one card change every time a new game state comes in.
+		// this will just have one card change every time a new game state comes in.cle
 		// the term LUT means "look up table".  you will see it sometimes in code written last
 		// century.
 		cardLUT = [

@@ -118,13 +118,13 @@ public class WebPoker extends WebSocketServer {
     // as the "state of the game"
 
     broadcast(game.exportStateAsJSON());
-    System.out.println(conn + ":- " + message);
+    System.out.println(conn + ": " + message);
   }
 
   @Override
   public void onMessage(WebSocket conn, ByteBuffer message) {
     broadcast(message.array());
-    System.out.println(conn + ":: " + message);
+    System.out.println(conn + ": " + message);
   }
 
   public class upDate extends TimerTask {
