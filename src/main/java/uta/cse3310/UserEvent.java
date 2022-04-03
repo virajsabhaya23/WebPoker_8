@@ -15,6 +15,9 @@ public class UserEvent {
     UserEventType event;
     int playerID;
     String name;
+    String stand;
+    String hit;
+    String call;
 
     public UserEvent() {
     }

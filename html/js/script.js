@@ -70,7 +70,7 @@ connection.onclose = function(event) {
 
 function deal() {
 	var msg = {
-		text: document.getElementById("sendDall").value,
+		text: document.getElementById("sendDeal").value,
 	};
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg))
@@ -86,21 +86,27 @@ function send() {
 
 function call() {
 	var msg = {
+		event: "CALL",
 		text: document.getElementById("sendCall").value,
+		playerID: playerID
 	};
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg))
 }
 function stand() {
 	var msg = {
+		event: "STAND",
 		text: document.getElementById("sendStand").value,
+		playerID: playerID
 	};
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg))
 }
 function hit() {
 	var msg = {
+		event: "HIT",
 		text: document.getElementById("sendHit").value,
+		playerID: playerID
 	};
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg))
@@ -117,7 +123,7 @@ function sendName() {
 	var msg = {
 		event: "NAME",
 		name: document.getElementById("sendName").value,
-		playerID: playerID,
+		playerID: playerID
 	};
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg));

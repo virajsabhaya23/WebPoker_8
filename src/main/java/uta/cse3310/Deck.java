@@ -44,6 +44,11 @@ public class Deck {
       }
       // return deck;
    }
+
+   public static String[] deal(int id) {
+      String[] deal = new String[5];
+      return deal;
+   }
 }
 
 

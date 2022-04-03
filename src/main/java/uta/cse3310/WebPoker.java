@@ -54,7 +54,7 @@ public class WebPoker extends WebSocketServer {
 
   private int numPlayers;
   private Game game;
-
+  public int actions = 0;
   private void setNumPlayers(int N) {
     numPlayers = N;
   }
@@ -71,18 +71,26 @@ public class WebPoker extends WebSocketServer {
     super(new InetSocketAddress(port), Collections.<Draft>singletonList(draft));
   }
 
+  public int getNum() {
+    return numPlayers;
+  }
+
   @Override
   public void onOpen(WebSocket conn, ClientHandshake handshake) {
-     
+    int i = 0;
     System.out.println(
         conn.getRemoteSocketAddress().getAddress().getHostAddress() + " connected");
 
     // Since this is a new connection, it is also a new player
     numPlayers = numPlayers + 1; // player id's start at 0
     Player player = new Player(numPlayers);
+     // changed from 0 to 1, testing 2 player start
     if (numPlayers == 0) {
       System.out.println("starting a new game");
       game = new Game();
+      while (i != numPlayers) {
+        // possibly kick players out
+      }
     }
 
     conn.setAttachment(numPlayers);
@@ -94,6 +102,9 @@ public class WebPoker extends WebSocketServer {
     // and as always, we send the game state to everyone
     broadcast(game.exportStateAsJSON());
     System.out.println("the game state" + game.exportStateAsJSON());
+
+
+    // TODO: deal cards to new connections (players)
   }
 
   @Override
@@ -153,8 +164,11 @@ public class WebPoker extends WebSocketServer {
     s.start();
     System.out.println("WebPokerServer started on port: " + s.getPort());
 
-    Deck.initialize();
+    // Deck.initialize();
+    // first 5 cards are called deal0
 
+
+    System.out.println("You are going in main :)");
     // Below code reads from stdin, making for a pleasant way to exit
     BufferedReader sysin = new BufferedReader(new InputStreamReader(System.in));
     while (true) {
@@ -183,10 +197,11 @@ public class WebPoker extends WebSocketServer {
     setConnectionLostTimeout(100);
     setNumPlayers(-1);
 
-
+    System.out.println("You are going into onStart :)");
     
     // once a second call update
     // may want to start this in the main() function??
     new java.util.Timer().scheduleAtFixedRate(new upDate(), 0, 1000);
+    System.out.println("You are leaving onStart :)");
   }
 }
