@@ -68,12 +68,42 @@ connection.onclose = function(event) {
 	}
 };
 
+function deal() {
+	var msg = {
+		text: document.getElementById("sendDall").value,
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
+
 function send() {
 	var msg = {
 		text: document.getElementById("send_text").value,
 	};
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg));
+}
+
+function call() {
+	var msg = {
+		text: document.getElementById("sendCall").value,
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
+function stand() {
+	var msg = {
+		text: document.getElementById("sendStand").value,
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
+function hit() {
+	var msg = {
+		text: document.getElementById("sendHit").value,
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
 }
 
 function sendName() {

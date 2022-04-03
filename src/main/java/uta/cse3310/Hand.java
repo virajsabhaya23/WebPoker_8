@@ -1,3 +1,5 @@
+// Java class for handling ranking of a hand.
+
 package uta.cse3310;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -8,11 +10,12 @@ import com.google.gson.GsonBuilder;
 
 import uta.cse3310.Card.Value;
 
+
 public class Hand {	
     // private transient int i=10;
     // marked transient they will not serialized / deserialized
 
-    public Card[] cards;    
+    public Card[] cards;
     public int ranking;
     public int highCard;
     
@@ -41,7 +44,6 @@ public class Hand {
     	hnd.highCard = Arrays.asList(this_hand_enum_values).indexOf(hnd.cards[0].value);
     	return hnd.cards;	
     }
-    
     
     public void getRanking() {
     	int spadesCount   = 0;

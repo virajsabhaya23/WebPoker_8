@@ -30,7 +30,10 @@ public class Game {
         // TODO: FIX THIS WHEN PLAYERID = 0
         // RETURNS WITH IndexOutOfBoundsException
         
-        players.remove(playerid - 1);
+        if (playerid != 0)
+            players.remove(playerid - 1);
+        // else
+        //     players.remove(playerid);
     }
 
     public void processMessage(String msg) {
@@ -43,7 +46,6 @@ public class Game {
         if (event.event == UserEventType.NAME) {
             players.get(event.playerID).SetName(event.name);
         }
-
     }
 
     public boolean update() {

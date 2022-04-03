@@ -17,3 +17,8 @@ div.section.cards div.container div.row {
 	height: auto;
 }
 
+.deal-button{
+	display: flex;
+	text-align: center;
+}
+

@@ -17,8 +17,10 @@
 				</div>
 			</div>
 		</div>
-
 		<div class="section cards">
+			<div class="deal-button">
+				<input class="button-primary" type="button" id="sendDeal" name="sendDeal" value="Deal" onclick="deal()">
+			</div>
 			<div class="container">
 				<div class="row">
 					<img id="card1" src="img/3C.svg"/>
@@ -43,10 +45,9 @@
 						<input class="button-primary" type="button" name="send_button" value="Send" onclick="send()"/>
 					</div>
 					<div class="player-game-buttons">
-						<input type="button" name="sendName" value="Call" onclick="sendCall()">
-						<input type="button" name="sendName" value="Stand" onclick="sendStand()">
-						<input type="button" name="sendName" value="Fold" onclick="sendFold()">
-						<input type="button" name="sendName" value="Hit" onclick="sendHit()">
+						<input type="button" id="sendCall" name="sendCall" value="Call" onclick="call()">
+						<input type="button" id="sendStand" name="sendStand" value="Stand" onclick="stand()">
+						<input type="button" id="sendHit" name="sendHit" value="Hit" onclick="hit()">
 					</div>					
 			</div>
 		</div>
