@@ -7,6 +7,7 @@
 		<link rel="stylesheet" href="css/style.css" />
 		<link rel="stylesheet" href="css/normalize.css" />
 		<link rel="stylesheet" href="css/skeleton.css" />
+		<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
 	</head>
 
 	<body>
@@ -18,8 +19,12 @@
 			</div>
 		</div>
 		<div class="section cards">
-			<div class="deal-button">
-				<input class="button-primary" type="button" id="sendDeal" name="sendDeal" value="Deal" onclick="deal()">
+			<div class="button-primary">
+				<!-- <a href="index.jsp"> -->
+					<button class="deal-button" type="submit" id="sendDeal" name="sendDeal"  onclick="deal()"> 
+						Deal
+					</button>
+				<!-- </a> -->
 			</div>
 			<div class="container">
 				<div class="row">
@@ -48,6 +53,7 @@
 						<input type="button" id="sendCall" name="sendCall" value="Call" onclick="call()">
 						<input type="button" id="sendStand" name="sendStand" value="Stand" onclick="stand()">
 						<input type="button" id="sendHit" name="sendHit" value="Hit" onclick="hit()">
+						<!-- <input type="button" id="sendFold" name="sendFold" value="Fold" onclick="fold()"> -->
 					</div>					
 			</div>
 		</div>

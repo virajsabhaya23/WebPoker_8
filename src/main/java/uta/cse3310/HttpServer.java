@@ -46,6 +46,10 @@ public class HttpServer {
                     resp.send(200, String.format("%tF %<tT", now));
                     return 0;
                 }
+
+                // public void doPost(Request req, Response resp) throws IOException {
+                //     String dealButton = req.getParameter("sendDeal");
+                // }
             });
             server.start();
             System.out.println("HTTPServer is listening on port " + port);

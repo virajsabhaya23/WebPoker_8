@@ -105,6 +105,13 @@ function hit() {
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg))
 }
+// function fold() {
+// 	var msg = {
+// 		text: document.getElementById("sendFold").value,
+// 	};
+// 	connection.send(JSON.stringify(msg));
+// 	console.log(JSON.stringify(msg))
+// }
 
 function sendName() {
 	var msg = {
