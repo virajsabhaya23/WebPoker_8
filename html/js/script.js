@@ -13,12 +13,14 @@ connection.onmessage = function (evt) {
 	msg = evt.data;
 
 	console.log("Message received: ");
-	document.getElementById("textbox").innerText =
-		document.getElementById("textbox").innerText +
-		"\n\n" +
-		"Message Received" +
-		"\n" +
-		msg;
+
+	// Not needed
+	// document.getElementById("textbox").innerText =
+	// 	document.getElementById("textbox").innerText +
+	// 	"\n\n" +
+	// 	"Message Received" +
+	// 	"\n" +
+	// 	msg;
 
 	// This is a hack for this example.
 	// The only time the WebPoker server sends data just

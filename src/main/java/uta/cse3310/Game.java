@@ -9,9 +9,11 @@ import uta.cse3310.UserEvent.UserEventType;
 import uta.cse3310.WebPoker;
 
 public class Game {
+
+    private transient int seconds;
     int action = 0;
     ArrayList<Player> players = new ArrayList<>();
-    int turn; // player ID that has the current turn
+    private int turn; // player ID that has the current turn
     int actions = 0;
 
     public String exportStateAsJSON() {
@@ -28,9 +30,6 @@ public class Game {
         // deletes the player from the players array
         // and does whatever else is needed to remove
         // the player from the game.
-
-        // TODO: FIX THIS WHEN PLAYERID = 0
-        // RETURNS WITH IndexOutOfBoundsException
         
         if (playerid != 0)
             players.remove(playerid - 1);
@@ -47,139 +46,77 @@ public class Game {
 
         if (event.event == UserEventType.NAME) {
             players.get(event.playerID).SetName(event.name);
+            // call Player.GiveHand function to give player their hand
         }
         if (event.event == UserEventType.STAND) {
             // when user calls stand, move on to the next player
             System.out.println("Player STAND");
             action = action + 1;
-            // players.get(event.playerID).SetName(event.name);
+            //players.get(event.playerID).SetName(event.stand);
         }
         if (event.event == UserEventType.HIT) {
             // when user calls hit
             System.out.println("Player HIT");
             action = action + 1;
-            // players.get(event.playerID).SetName(event.name);
+            //players.get(event.playerID).SetName(event.hit);
         }          
         if (event.event == UserEventType.CALL) {
             // when user calls call
             action = action + 1;
             System.out.println("Player CALL" + " Action " + action);
-            // players.get(event.playerID).SetName(event.name);
-        }                    
+            //players.get(event.playerID).SetName(event.call);
+        }                 
     }
 
     // TODO: Fix issue when more than one player enters their name
 
 
     public boolean update() {
-
+        
         // this function is called on a periodic basis (once a second) by a timer
         // it is to allow time based situations to be handled in the game
         // if the game state is changed, it returns a true.
+        seconds = seconds + 1;
+        if ((seconds % 10) == 0) {
+            turn = turn + 1;
+            if (turn == 5) {
+                turn = 0;
+            }
+            return true;
+        }
         return false;
+
+        // return false;
         // expecting that returning a true will trigger a send of the game
         // state to everyone
 
     }
 
-    // public void betRound(int n) {
-    //     //bet Round call atm does nothing aswell LOL
-
-    //     System.out.println("Bet Round");
-
-    //     while (actions != n) {
-    //         //System.out.println("Inside Bet Round");
-    //                 if (event.event == UserEventType.STAND) {
-    //         // when user calls stand, move on to the next player
-    //         System.out.println("Player STAND");
-    //         action = action + 1;
-    //         // players.get(event.playerID).SetName(event.name);
-    //     }
-    //     if (event.event == UserEventType.HIT) {
-    //         // when user calls hit
-    //         System.out.println("Player HIT");
-    //         action = action + 1;
-    //         // players.get(event.playerID).SetName(event.name);
-    //     }          
-    //     if (event.event == UserEventType.CALL) {
-    //         // when user calls call
-    //         action = action + 1;
-    //         System.out.println("Player CALL" + " Action " + action);
-    //         // players.get(event.playerID).SetName(event.name);
-    //     }
-    //     }
-    //     actions = 0;
-    // }
-
-    // public void changeRound(int n) {
-    //     // Change Round call does nothing atm
-
-    //     System.out.println("Change Round");
-
-    //     // while (actions != n) {
-    //     //     System.out.println("Inside Change Round");
-    //     // }
-    //     actions = 0;    
-    // }
-
-    // public void showdownRound(int n) {
-    //     // hand ranking call
-
-    //     System.out.println("Showdown Round");
-
-    //     // while (actions != n) {
-    //     //     System.out.println("Inside Showdown Round");
-    //     // }
-    //     actions = 0;
-    // }
 
     public Game() {
-        System.out.println("creating a Game Object");
-
-        // Deal cards to players
-        System.out.println("Dealing cards");
-        
-
-        
-        // int numPlayers = 2;
-
-
-        //numPlayers = getNum();
-        //round 1
-        //betRound(numPlayers);
-        // System.out.println("You are going into a loop:)");
-        // while (actions != numPlayers) {
+        System.out.println("Going into loop");
+        // while(actions < 1) {
             
         // }
-        // actions = 0;
-        // System.out.println("You've Made it out Congrats :)");
-        // //round 2
-        // //changeRound(numPlayers);
-        // while (actions != numPlayers) {
-            
-        // }
-        // actions = 0;
-        // System.out.println("You've Made it out Congrats :)");
-        // //round 3
-        // //betRound(numPlayers);
-        // while (actions != numPlayers) {
-            
-        // }
-        // actions = 0;
-        // System.out.println("You've Made it out Congrats :)");
-        // //round 4
-        // //showdownRound(numPlayers);
-        // while (actions != numPlayers) {
-            
-        // }
-        // actions = 0;
-        // System.out.println("You've Made it out Congrats :)");
-        //close game
-        System.out.println("Dealing complete, rejoice!!!");
+        System.out.println("Somehow made it out of the loop");
     }
 
     // private int getNum() {
     //     return 2;
     // }
+
+        // System.out.println("creating a Game Object");
+        // // Deal cards to players
+        // System.out.println("Dealing cards");
+        // // get5card();
+        // System.out.println("Each Player Has 5 Cardse, rejoice!!!");
+        // WebPoker.betRound();
+        // System.out.println("Bet Round Complete");
+        // WebPoker.changeRound();
+        // System.out.println("Change Round Complete");
+        // WebPoker.betRound();
+        // System.out.println("Bet Round Complete");
+        // WebPoker.showdownRound();
+        // System.out.println("Game Overs");
 
 }
