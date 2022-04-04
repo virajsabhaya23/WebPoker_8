@@ -10,11 +10,11 @@ import uta.cse3310.Card.Suite;
 
 public class Deck {
 
-   static String[] deck;
+   public String[] deck;
    public static String[] playerHandCards = new String[5];
    public static int FiveCounter = 0;
    
-   public static String[] initialize() {
+   public String[] initialize() {
       String[] SUITS = {
          "C", "D", "H", "S"
       };
@@ -46,14 +46,19 @@ public class Deck {
       return deck;
    }
 
-   public static String[] get5card(){
+   public String[] get5card(String[] deck){
       int i = 0; 
       for (int k = FiveCounter; k < FiveCounter+5; k++){
          playerHandCards[i] = deck[k];
          i++;
       }
       FiveCounter += 5;
+      
+      System.out.println("5 cards below");
+      for (int j=0; j<5; j++){   
+         System.out.println(playerHandCards[j]);
+      }
+    
       return playerHandCards;
    }
-
 }

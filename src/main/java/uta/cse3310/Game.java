@@ -44,8 +44,11 @@ public class Game {
         // take the string we just received, and turn it into a user event
         UserEvent event = gson.fromJson(msg, UserEvent.class);
 
+
+        // TODO: look into order of display
         if (event.event == UserEventType.NAME) {
             players.get(event.playerID).SetName(event.name);
+            players.get(event.playerID).splitCardsForPlayer();
             // call Player.GiveHand function to give player their hand
         }
         //while (actions != 1) {

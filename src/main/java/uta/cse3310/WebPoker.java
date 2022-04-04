@@ -167,6 +167,8 @@ public class WebPoker extends WebSocketServer {
 
     // Create and start the http server
 
+
+
     HttpServer H = new HttpServer(8088, "./html");
     H.start();
     
@@ -178,7 +180,7 @@ public class WebPoker extends WebSocketServer {
     s.start();
     System.out.println("WebPokerServer started on port: " + s.getPort());
 
-    Deck.initialize();
+    
     // first 5 cards are called deal0
 
 

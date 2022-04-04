@@ -8,7 +8,7 @@ public class Player {
     
     public int Id;
     String Name;
-    uta.cse3310.Card Cards[];
+    String[] Cards = new String[5];
     String LastMessageToPlayer;
 
     public Player(int id) {
@@ -17,8 +17,8 @@ public class Player {
         // there is a lot smarter ways to do this,
         // but at least this is obvious
         // Deck.get5card();
-        //String[] Cards = new String[5];
-        Cards = new Card[5];
+        
+        // Cards = new Card[5];
     }
 
     public void SetName(String N) {
@@ -31,38 +31,41 @@ public class Player {
         return gson.toJson(this);
     }
 
-    // public void splitCardsForPlayer(){
-        
-    //     if (Id == 0){
-    //         for (int i = 0; i <= Cards.length; i++) {
-    //             Cards[i] = Deck.get5card()[i];
-    //         }
-    //     }
-    //     else if (Id == 1) {
-    //         for (int i = 0; i <= Cards.length; i++) {
-    //             Cards[i] = Deck.get5card()[i];
-    //         }
-    //     }
-    //     else if (Id == 2) {
-    //         for (int i = 0; i <= Cards.length; i++) {
-    //             Cards[i] = Deck.get5card()[i];
-    //         }
-    //     }
-    //     else if (Id == 3) {
-    //         for (int i = 0; i <= Cards.length; i++) {
-    //             Cards[i] = Deck.get5card()[i];
-    //         }
-    //     }
-    //     else if (Id == 4) {
-    //         for (int i = 0; i <= Cards.length; i++) {
-    //             Cards[i] = Deck.get5card()[i];
-    //         }
-    //     }
-    //     else {
-    //         System.out.println("The if statement don't work");
-    //     }
-    // }
+    public void splitCardsForPlayer(){
+
+        String[] hand;
+        String[] deck;
+        Deck D = new Deck();
+        deck = D.initialize();
+        hand = D.get5card(deck);
+
+        if (Id == 0){
+            for (int i = 0; i <= 5; i++) {
+                Cards[i] = hand[i];
+            }
+        }
+        else if (Id == 1) {
+            for (int i = 0; i <= 5; i++) {
+                Cards[i] = hand[i];
+            }
+        }
+        else if (Id == 2) {
+            for (int i = 0; i <= 5; i++) {
+                Cards[i] = hand[i];
+            }
+        }
+        else if (Id == 3) {
+            for (int i = 0; i <= 5; i++) {
+                Cards[i] = hand[i];
+            }
+        }
+        else if (Id == 4) {
+            for (int i = 0; i <= 5; i++) {
+                Cards[i] = hand[i];
+            }
+        }
+        else {
+            System.out.println("The if statement don't work");
+        }
+    }
 }
-
-     
-
