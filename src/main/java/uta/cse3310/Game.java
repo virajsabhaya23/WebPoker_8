@@ -48,24 +48,28 @@ public class Game {
             players.get(event.playerID).SetName(event.name);
             // call Player.GiveHand function to give player their hand
         }
-        if (event.event == UserEventType.STAND) {
-            // when user calls stand, move on to the next player
-            System.out.println("Player STAND");
-            action = action + 1;
-            //players.get(event.playerID).SetName(event.stand);
-        }
-        if (event.event == UserEventType.HIT) {
-            // when user calls hit
-            System.out.println("Player HIT");
-            action = action + 1;
-            //players.get(event.playerID).SetName(event.hit);
-        }          
-        if (event.event == UserEventType.CALL) {
-            // when user calls call
-            action = action + 1;
-            System.out.println("Player CALL" + " Action " + action);
-            //players.get(event.playerID).SetName(event.call);
-        }                 
+        //while (actions != 1) {
+            if (event.event == UserEventType.STAND) {
+                // when user calls stand, move on to the next player
+                System.out.println("Player STAND");
+                action = action + 1;
+                //players.get(event.playerID).SetName(event.stand);
+            }
+            if (event.event == UserEventType.HIT) {
+                // when user calls hit
+                action = action + 1;
+                System.out.println("Player HIT");
+                
+                //players.get(event.playerID).SetName(event.hit);
+            }          
+            if (event.event == UserEventType.CALL) {
+                // when user calls call
+                action = action + 1;
+                System.out.println("Player CALL" + " Action " + action);
+                //players.get(event.playerID).SetName(event.call);
+            }    
+        //}
+        System.out.println("Ayo");             
     }
 
     // TODO: Fix issue when more than one player enters their name
