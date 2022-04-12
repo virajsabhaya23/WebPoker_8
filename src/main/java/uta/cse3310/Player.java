@@ -32,36 +32,40 @@ public class Player {
     }
 
     public void splitCardsForPlayer(){
+        Deck deck = new Deck();
+        //deck.cards = new Card[52];
+    
 
-        String[] hand;
-        String[] deck;
-        Deck D = new Deck();
-        deck = D.initialize();
-        hand = D.get5card(deck);
-
+        
+        // String[] hand;
+        // String[] deck;
+        // Deck D = new Deck();
+        // deck = D.initialize();
+        // hand = D.get5card(deck);
+        
         if (Id == 0){
             for (int i = 0; i <= 5; i++) {
-                Cards[i] = hand[i];
+                //Cards[i] = hand[i];
             }
         }
         else if (Id == 1) {
             for (int i = 0; i <= 5; i++) {
-                Cards[i] = hand[i];
+                //Cards[i] = hand[i];
             }
         }
         else if (Id == 2) {
             for (int i = 0; i <= 5; i++) {
-                Cards[i] = hand[i];
+                //Cards[i] = hand[i];
             }
         }
         else if (Id == 3) {
             for (int i = 0; i <= 5; i++) {
-                Cards[i] = hand[i];
+                //Cards[i] = hand[i];
             }
         }
         else if (Id == 4) {
             for (int i = 0; i <= 5; i++) {
-                Cards[i] = hand[i];
+                //Cards[i] = hand[i];
             }
         }
         else {

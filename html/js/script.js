@@ -46,12 +46,12 @@ connection.onmessage = function (evt) {
 		// century.
 		cardLUT = [
 			"img/3C.svg",
-			"img/2B.svg",
+			"img/2H.svg",
 			"img/3S.svg",
-			"img/KC.svg",
+			"img/13C.svg",
 			"img/6D.svg",
-			"img/2J.svg",
-			"img/2S.svg"
+			"img/6C.svg",
+			"img/9D.svg"
 		];
 		document.getElementById("card4").src = cardLUT[cardIdx];
 		cardIdx = cardIdx + 1;

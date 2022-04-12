@@ -88,6 +88,7 @@ public class WebPoker extends WebSocketServer {
       if (numPlayers == 0) {
         System.out.println("starting a new game");
         game = new Game();
+        game.shuffle();
       }
       // This puts the player number into the conn data structure so
       // it is available later on
@@ -177,6 +178,7 @@ public class WebPoker extends WebSocketServer {
     int port = 8888;
 
     WebPoker s = new WebPoker(port);
+    s.setReuseAddr(true);
     s.start();
     System.out.println("WebPokerServer started on port: " + s.getPort());
 
@@ -212,8 +214,6 @@ public class WebPoker extends WebSocketServer {
     setConnectionLostTimeout(0);
     setConnectionLostTimeout(100);
     setNumPlayers(-1);
-
-    System.out.println("You are going into onStart :)");
     
     // once a second call update
     // may want to start this in the main() function??

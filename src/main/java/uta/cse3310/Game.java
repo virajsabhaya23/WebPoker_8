@@ -7,14 +7,36 @@ import com.google.gson.GsonBuilder;
 
 import uta.cse3310.UserEvent.UserEventType;
 import uta.cse3310.WebPoker;
+import uta.cse3310.Deck;
+import java.util.*;
 
 public class Game {
+    Deck deck = new Deck();
 
+    // I am not going to write a for loop
+    //System.out.println(Deck.cards[i]);
+    
     private transient int seconds;
     int action = 0;
     ArrayList<Player> players = new ArrayList<>();
     private int turn; // player ID that has the current turn
     int actions = 0;
+
+    public void shuffle(){
+        for (int i = 0; i < 51; i++) {
+            System.out.println(deck.cards[i].value);
+            System.out.println(deck.cards[i].suite);
+        }
+        // for (int i = deck.cards.length - 1; i > 0; i--) {
+
+        //  Random rand = new Random();
+
+        //  int j = rand.nextInt(i + 1);
+        //  Card tmp = deck.cards[j];
+        //  deck.cards[j] = deck.cards[i];
+        //  deck.cards[i] = tmp;
+      //}
+    }
 
     public String exportStateAsJSON() {
         Gson gson = new Gson();
@@ -48,7 +70,7 @@ public class Game {
         // TODO: look into order of display
         if (event.event == UserEventType.NAME) {
             players.get(event.playerID).SetName(event.name);
-            players.get(event.playerID).splitCardsForPlayer();
+            // players.get(event.playerID).splitCardsForPlayer();
             // call Player.GiveHand function to give player their hand
         }
         //while (actions != 1) {

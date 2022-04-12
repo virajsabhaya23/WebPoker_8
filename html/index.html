@@ -1,67 +1,67 @@
 <!DOCTYPE html>
 <html>
-	<meta charset="utf-8" />
+  <meta charset="utf-8" />
 
-	<head>
-		<title>CSE3310 WebPoker Group 8</title>
-		<link rel="stylesheet" href="css/style.css" />
-		<link rel="stylesheet" href="css/normalize.css" />
-		<link rel="stylesheet" href="css/skeleton.css" />
-		<!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
-	</head>
+  <head>
+    <title>CSE3310 WebPoker Group 8</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+    <link rel="stylesheet" href="css/skeleton.css" />
+    <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+  </head>
 
-	<body>
-		<div class="section header">
-			<div class="container">
-				<div class="row">
-					<h2 class="header-heading">Group 8: WebPoker</h2>
-				</div>
-			</div>
-		</div>
-		<div class="section cards">
-			<div class="button-primary">
-				<!-- <a href="index.jsp"> -->
-					<button class="deal-button" type="submit" id="sendDeal" name="sendDeal"  onclick="deal()"> 
-						Deal
-					</button>
-				<!-- </a> -->
-			</div>
-			<div class="container">
-				<div class="row">
-					<img id="card1" src="img/1B.svg"/>
-					<img id="card2" src="img/1B.svg"/>
-					<img id="card3" src="img/1B.svg"/>
-					<img id="card4" src="img/1B.svg"/>
-					<img id="card5" src="img/1B.svg"/>
-				</div>
-			</div>
-		</div>
+  <body>
+    <div class="section header">
+      <div class="container">
+        <div class="row">
+          <h2 class="header-heading">Group 8: WebPoker</h2>
+        </div>
+      </div>
+    </div>
+    <div class="section cards">
+      <div class="button-primary">
+        <!-- <a href="index.jsp"> -->
+          <button class="deal-button" type="submit" id="sendDeal" name="sendDeal"  onclick="deal()"> 
+            Deal
+          </button>
+        <!-- </a> -->
+      </div>
+      <div class="container">
+        <div class="row">
+          <img id="card1" src="img/0B.svg"/>
+          <img id="card2" src="img/0B.svg"/>
+          <img id="card3" src="img/0B.svg"/>
+          <img id="card4" src="img/0B.svg"/>
+          <img id="card5" src="img/0B.svg"/>
+        </div>
+      </div>
+    </div>
 
-		<div class="section form-name-message">
-			<div class="container">
-					<div class="row">
-						<label for="nameInput">Your Name</label>
-						<input type="text" id="sendName"/>
-						<input class="button-primary" type="button" name="sendName" value="Send" onclick="sendName()"/>
-					</div>
-					<div class="row">
-						<label for="nameInput">Message</label>
-						<textarea class="u-full-width" id="send_text"></textarea>
-						<input class="button-primary" type="button" name="send_button" value="Send" onclick="send()"/>
-					</div>
-					<div class="player-game-buttons">
-						<input type="button" id="sendCall" name="sendCall" value="Call" onclick="call()">
-						<input type="button" id="sendStand" name="sendStand" value="Stand" onclick="stand()">
-						<input type="button" id="sendHit" name="sendHit" value="Hit" onclick="hit()">
-						<!-- <input type="button" id="sendFold" name="sendFold" value="Fold" onclick="fold()"> -->
-					</div>					
-			</div>
-		</div>
+    <div class="section form-name-message">
+      <div class="container">
+          <div class="row">
+            <label for="nameInput">Your Name</label>
+            <input type="text" id="sendName"/>
+            <input class="button-primary" type="button" name="sendName" value="Send" onclick="sendName()"/>
+          </div>
+          <div class="row">
+            <label for="nameInput">Message</label>
+            <textarea class="u-full-width" id="send_text"></textarea>
+            <input class="button-primary" type="button" name="send_button" value="Send" onclick="send()"/>
+          </div>
+          <div class="player-game-buttons">
+            <input type="button" id="sendCall" name="sendCall" value="Call" onclick="call()">
+            <input type="button" id="sendStand" name="sendStand" value="Stand" onclick="stand()">
+            <input type="button" id="sendHit" name="sendHit" value="Hit" onclick="hit()">
+            <!-- <input type="button" id="sendFold" name="sendFold" value="Fold" onclick="fold()"> -->
+          </div>					
+      </div>
+    </div>
 
-		<div class="section">
-			<div id="textbox"></div>
-		</div>
+    <div class="section">
+      <div id="textbox"></div>
+    </div>
 
-		<script src="js/script.js"></script>
-	</body>
+    <script src="js/script.js"></script>
+  </body>
 </html>
