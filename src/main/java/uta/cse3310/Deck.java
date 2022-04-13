@@ -8,58 +8,9 @@ public class Deck {
    public Card[] cards = new Card[52];
 
    public Deck() {
-      cards[0] = new Card();
-      cards[1] = new Card();
-      cards[2] = new Card();
-      cards[3] = new Card();
-      cards[4] = new Card();
-      cards[5] = new Card();
-      cards[6] = new Card();
-      cards[7] = new Card();
-      cards[8] = new Card();
-      cards[9] = new Card();
-      cards[10] = new Card();
-      cards[11] = new Card();
-      cards[12] = new Card();
-      cards[13] = new Card();
-      cards[14] = new Card();
-      cards[15] = new Card();
-      cards[16] = new Card();
-      cards[17] = new Card();
-      cards[18] = new Card();
-      cards[19] = new Card();
-      cards[20] = new Card();
-      cards[21] = new Card();
-      cards[22] = new Card();
-      cards[23] = new Card();
-      cards[24] = new Card();
-      cards[25] = new Card();
-      cards[26] = new Card();
-      cards[27] = new Card();
-      cards[28] = new Card();
-      cards[29] = new Card();
-      cards[30] = new Card();
-      cards[31] = new Card();
-      cards[32] = new Card();
-      cards[33] = new Card();
-      cards[34] = new Card();
-      cards[35] = new Card();
-      cards[36] = new Card();
-      cards[37] = new Card();
-      cards[38] = new Card();
-      cards[39] = new Card();
-      cards[40] = new Card();
-      cards[41] = new Card();
-      cards[42] = new Card();
-      cards[43] = new Card();
-      cards[44] = new Card();
-      cards[45] = new Card();
-      cards[46] = new Card();
-      cards[47] = new Card();
-      cards[48] = new Card();
-      cards[49] = new Card();
-      cards[50] = new Card();
-      cards[51] = new Card();
+
+      for(int i = 0; i < 52; i++) { cards[i] = new Card(); }
+
       cards[0].value = Card.Value.valueOf("TWO");
       cards[0].suite = Card.Suite.valueOf("SPADES");
       cards[1].value = Card.Value.valueOf("TWO");
@@ -174,23 +125,58 @@ public class Deck {
          cards[i] = cards[j];
          cards[j] = temp[0];
       }
-      System.out.println(Arrays.toString(cards));
+      // for (int i = 0; i < 5; i++){
+      //    System.out.println("Suite = " + cards[i].suite);
+      //    System.out.println("Value = " + cards[i].value);
+      // }
    }
 
-   // public Card[] initialize() {
-
-   // return cards;
-   // }
-
-   // public void shuffle() {
-   // for (int i = cards.length - 1; i > 0; i--) {
-
-   // Random rand = new Random();
-
-   // int j = rand.nextInt(i + 1);
-   // Card tmp = cards[j];
-   // cards[j] = cards[i];
-   // cards[i] = tmp;
-   // }
-   // }
+   //  public static Card[] splitCardsForPlayer(int Id){
+   //      Deck deck = WebPoker.deck;
+   //      Card[] hand = new Card[25];
+   //      if (Id == 0){
+   //          for (int i = 0; i < 5; i++) {
+   //              hand[i] = deck.cards[i];
+   //              //System.out.println("Suite = " + hand[i].suite);
+   //              //System.out.println("Value = " + hand[i].value);
+   //          }
+   //          return hand;
+   //      }
+   //      else if (Id == 1) {
+   //          for (int i = 5; i < 10; i++) {
+   //              hand[i] = deck.cards[i];
+   //             //  System.out.println("Suite = " + hand[i].suite);
+   //             //  System.out.println("Value = " + hand[i].value);
+   //          }
+   //          return hand;
+   //      }
+   //      else if (Id == 2) {
+   //          for (int i = 10; i < 15; i++) {
+   //              hand[i] = deck.cards[i];
+   //             //  System.out.println("Suite = " + hand[i].suite);
+   //             //  System.out.println("Value = " + hand[i].value);
+   //          }
+   //          return hand;
+   //      }
+   //      else if (Id == 3) {
+   //          for (int i = 15; i < 20; i++) {
+   //             hand[i] = deck.cards[i];
+   //             //  System.out.println("Suite = " + hand[i].suite);
+   //             //  System.out.println("Value = " + hand[i].value);
+   //          }
+   //          return hand;
+   //      }
+   //      else if (Id == 4) {
+   //          for (int i = 20; i < 25; i++) {
+   //              hand[i] = deck.cards[i];
+   //             //  System.out.println("Suite = " + hand[i].suite);
+   //             //  System.out.println("Value = " + hand[i].value);
+   //          }
+   //          return hand;
+   //      }
+   //      else {
+   //          System.out.println("The if statement don't work");
+   //          return null;
+   //      }
+   //  }
 }

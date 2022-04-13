@@ -56,6 +56,7 @@ public class WebPoker extends WebSocketServer {
   private Game game;
   public int action = 0;
   private Object mutex = new Object();
+  public static Deck deck = new Deck();
 
   private void setNumPlayers(int N) {
     numPlayers = N;

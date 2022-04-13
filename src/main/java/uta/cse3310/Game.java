@@ -11,7 +11,8 @@ import uta.cse3310.Deck;
 import java.util.*;
 
 public class Game {
-    Deck deck = new Deck();
+    
+    //Deck deck = new Deck();
 
     // I am not going to write a for loop
     // System.out.println(Deck.cards[i]);
@@ -63,7 +64,7 @@ public class Game {
         // TODO: look into order of display
         if (event.event == UserEventType.NAME) {
             players.get(event.playerID).SetName(event.name);
-            // players.get(event.playerID).splitCardsForPlayer();
+            players.get(event.playerID).splitCardsForPlayer();
             // call Player.GiveHand function to give player their hand
         }
         // while (actions != 1) {
