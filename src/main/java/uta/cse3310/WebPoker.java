@@ -56,6 +56,7 @@ public class WebPoker extends WebSocketServer {
   private Game game;
   public int action = 0;
   private Object mutex = new Object();
+
   private void setNumPlayers(int N) {
     numPlayers = N;
   }
@@ -77,35 +78,34 @@ public class WebPoker extends WebSocketServer {
   }
 
   @Override
-    public void onOpen(WebSocket conn, ClientHandshake handshake) {
+  public void onOpen(WebSocket conn, ClientHandshake handshake) {
 
-      System.out.println(
-          conn.getRemoteSocketAddress().getAddress().getHostAddress() + " connected");
+    System.out.println(
+        conn.getRemoteSocketAddress().getAddress().getHostAddress() + " connected");
 
-      // Since this is a new connection, it is also a new player
-      numPlayers = numPlayers + 1; // player id's start at 0
-      Player player = new Player(numPlayers);
-      if (numPlayers == 0) {
-        System.out.println("starting a new game");
-        game = new Game();
-        game.shuffle();
-      }
-      // This puts the player number into the conn data structure so
-      // it is available later on
-      conn.setAttachment(numPlayers);
+    // Since this is a new connection, it is also a new player
+    numPlayers = numPlayers + 1; // player id's start at 0
+    Player player = new Player(numPlayers);
+    if (numPlayers == 0) {
+      System.out.println("starting a new game");
+      game = new Game();
+    }
+    // This puts the player number into the conn data structure so
+    // it is available later on
+    conn.setAttachment(numPlayers);
 
-      // this is the only time we send info to a single client.
-      // it needs to know it's player ID.
-      conn.send(player.asJSONString());
-      synchronized (mutex) {
-        game.addPlayer(player);
-      }
+    // this is the only time we send info to a single client.
+    // it needs to know it's player ID.
+    conn.send(player.asJSONString());
+    synchronized (mutex) {
+      game.addPlayer(player);
+    }
 
-      // and as always, we send the game state to everyone
-      synchronized (mutex) {
-        broadcast(game.exportStateAsJSON());
-        System.out.println("the game state" + game.exportStateAsJSON());
-      }
+    // and as always, we send the game state to everyone
+    synchronized (mutex) {
+      broadcast(game.exportStateAsJSON());
+      System.out.println("the game state" + game.exportStateAsJSON());
+    }
   }
 
   @Override
@@ -116,7 +116,6 @@ public class WebPoker extends WebSocketServer {
     // websocket connection was opened.
     int idx = conn.getAttachment();
 
-    
     synchronized (mutex) {
       game.removePlayer(idx);
 
@@ -163,28 +162,19 @@ public class WebPoker extends WebSocketServer {
     }
   }
 
-
   public static void main(String[] args) throws InterruptedException, IOException {
 
     // Create and start the http server
-
-
-
     HttpServer H = new HttpServer(8088, "./html");
     H.start();
-    
-    // create and start the websocket server
 
+    // create and start the websocket server
     int port = 8888;
 
     WebPoker s = new WebPoker(port);
     s.setReuseAddr(true);
     s.start();
     System.out.println("WebPokerServer started on port: " + s.getPort());
-
-    
-    // first 5 cards are called deal0
-
 
     System.out.println("You are going in main :)");
     // Below code reads from stdin, making for a pleasant way to exit
@@ -214,36 +204,36 @@ public class WebPoker extends WebSocketServer {
     setConnectionLostTimeout(0);
     setConnectionLostTimeout(100);
     setNumPlayers(-1);
-    
+
     // once a second call update
     // may want to start this in the main() function??
     new java.util.Timer().scheduleAtFixedRate(new upDate(), 0, 1000);
     System.out.println("You are leaving onStart :)");
   }
   // public void betRound(message) {
-  //   // take player bets
-  //   System.out.println("Taking player bets");
-  //     while (action != 2) {
-  //         // loop until user actions are met
-  //         // look for hit
-  //         // look for stand
-  //         // look for call
-  //         game.processMessage(message)
-  //     }
-  //   action = 0;
+  // // take player bets
+  // System.out.println("Taking player bets");
+  // while (action != 2) {
+  // // loop until user actions are met
+  // // look for hit
+  // // look for stand
+  // // look for call
+  // game.processMessage(message)
+  // }
+  // action = 0;
   // }
 
   // public void changeRound() {
-  //   // chnge cards
-  //   System.out.println("changing cards");
-  //     while (action != 2) {
-  //         // loop until user actions are met
-  //     }
-  //     action = 0;
+  // // chnge cards
+  // System.out.println("changing cards");
+  // while (action != 2) {
+  // // loop until user actions are met
+  // }
+  // action = 0;
   // }
 
   // public void showdownRound() {
-  //   // call Hand function
-  //   System.out.println("ranking cards to get winner");
+  // // call Hand function
+  // System.out.println("ranking cards to get winner");
   // }
 }

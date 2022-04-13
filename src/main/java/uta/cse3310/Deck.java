@@ -6,7 +6,7 @@ import java.util.*;
 
 public class Deck {
    public Card[] cards = new Card[52];
-      
+
    public Deck() {
       cards[0] = new Card();
       cards[1] = new Card();
@@ -164,22 +164,33 @@ public class Deck {
       cards[50].suite = Card.Suite.valueOf("CLUBS");
       cards[51].value = Card.Value.valueOf("ACE");
       cards[51].suite = Card.Suite.valueOf("DIAMONDS");
+
+      Random rand = new Random();
+      int j;
+      Card[] temp = new Card[1];
+      for (int i = 0; i < 52; i++) {
+         j = rand.nextInt(52);
+         temp[0] = cards[i];
+         cards[i] = cards[j];
+         cards[j] = temp[0];
+      }
+      System.out.println(Arrays.toString(cards));
    }
 
-//    public Card[] initialize() {
-      
-//       return cards;
-//    }
+   // public Card[] initialize() {
 
-//    public void shuffle() {
-//       for (int i = cards.length - 1; i > 0; i--) {
+   // return cards;
+   // }
 
-//          Random rand = new Random();
+   // public void shuffle() {
+   // for (int i = cards.length - 1; i > 0; i--) {
 
-//          int j = rand.nextInt(i + 1);
-//          Card tmp = cards[j];
-//          cards[j] = cards[i];
-//          cards[i] = tmp;
-//       }
-//    }
+   // Random rand = new Random();
+
+   // int j = rand.nextInt(i + 1);
+   // Card tmp = cards[j];
+   // cards[j] = cards[i];
+   // cards[i] = tmp;
+   // }
+   // }
 }
