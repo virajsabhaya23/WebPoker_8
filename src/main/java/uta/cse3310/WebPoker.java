@@ -52,7 +52,7 @@ import java.util.TimerTask;
  */
 public class WebPoker extends WebSocketServer {
 
-  private int numPlayers;
+  public static int numPlayers;
   private Game game;
   public int action = 0;
   private Object mutex = new Object();
@@ -211,30 +211,4 @@ public class WebPoker extends WebSocketServer {
     new java.util.Timer().scheduleAtFixedRate(new upDate(), 0, 1000);
     System.out.println("You are leaving onStart :)");
   }
-  // public void betRound(message) {
-  // // take player bets
-  // System.out.println("Taking player bets");
-  // while (action != 2) {
-  // // loop until user actions are met
-  // // look for hit
-  // // look for stand
-  // // look for call
-  // game.processMessage(message)
-  // }
-  // action = 0;
-  // }
-
-  // public void changeRound() {
-  // // chnge cards
-  // System.out.println("changing cards");
-  // while (action != 2) {
-  // // loop until user actions are met
-  // }
-  // action = 0;
-  // }
-
-  // public void showdownRound() {
-  // // call Hand function
-  // System.out.println("ranking cards to get winner");
-  // }
 }

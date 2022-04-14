@@ -5,10 +5,11 @@ import com.google.gson.GsonBuilder;
 import uta.cse3310.Deck;
 
 public class Player {
-    public int Id;
+    public static int Id; // Made Changes here
+    public static int Wallet = 100; // Made Changes here
     String Name;
     String LastMessageToPlayer;
-    Card[] hand = new Card[5];
+    public static Card[] hand = new Card[5];
 
     public Player(int id) {
         Id = id;
@@ -18,7 +19,7 @@ public class Player {
 
     public void SetName(String N) {
         Name = N;
-        LastMessageToPlayer="Welcome " + N + " to the game.";
+        LastMessageToPlayer = "Welcome " + N + " to the game.";
     }
 
     public String asJSONString() {
@@ -29,48 +30,44 @@ public class Player {
     public Card[] splitCardsForPlayer() {
         Deck deck = WebPoker.deck;
         System.out.println("ID # = " + Id);
-        if (Id == 0){
+        if (Id == 0) {
             for (int i = 0; i < 5; i++) {
                 hand[i] = deck.cards[i];
                 System.out.println("Suite = " + hand[i].suite);
                 System.out.println("Value = " + hand[i].value);
             }
             return hand;
-        }
-        else if (Id == 1) {
+        } else if (Id == 1) {
             System.out.println("I am past the fisrt loop :)");
             for (int i = 0; i < 5; i++) {
-                hand[i] = deck.cards[i+5];
+                hand[i] = deck.cards[i + 5];
                 System.out.println("Suite = " + hand[i].suite);
                 System.out.println("Value = " + hand[i].value);
             }
             return hand;
-        }
-        else if (Id == 2) {
+        } else if (Id == 2) {
             for (int i = 0; i < 5; i++) {
-                hand[i] = deck.cards[i+10];
+                hand[i] = deck.cards[i + 10];
                 System.out.println("Suite = " + hand[i].suite);
                 System.out.println("Value = " + hand[i].value);
             }
             return hand;
-        }
-        else if (Id == 3) {
+        } else if (Id == 3) {
             for (int i = 0; i < 5; i++) {
-                hand[i] = deck.cards[i+15];
+                hand[i] = deck.cards[i + 15];
                 System.out.println("Suite = " + hand[i].suite);
                 System.out.println("Value = " + hand[i].value);
             }
             return hand;
-        }
-        else if (Id == 4) {
+        } else if (Id == 4) {
             for (int i = 0; i < 5; i++) {
-                hand[i] = deck.cards[i+20];
+
+                hand[i] = deck.cards[i + 20];
                 System.out.println("Suite = " + hand[i].suite);
                 System.out.println("Value = " + hand[i].value);
             }
             return hand;
-        }
-        else {
+        } else {
             System.out.println("The if statement don't work");
             return null;
         }

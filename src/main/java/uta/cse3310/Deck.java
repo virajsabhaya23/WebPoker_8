@@ -6,10 +6,14 @@ import java.util.*;
 
 public class Deck {
    public Card[] cards = new Card[52];
+   public int ranking;
+	public int highCard;
 
    public Deck() {
 
-      for(int i = 0; i < 52; i++) { cards[i] = new Card(); }
+      for (int i = 0; i < 52; i++) {
+         cards[i] = new Card();
+      }
 
       cards[0].value = Card.Value.valueOf("TWO");
       cards[0].suite = Card.Suite.valueOf("SPADES");
@@ -125,58 +129,9 @@ public class Deck {
          cards[i] = cards[j];
          cards[j] = temp[0];
       }
-      // for (int i = 0; i < 5; i++){
-      //    System.out.println("Suite = " + cards[i].suite);
-      //    System.out.println("Value = " + cards[i].value);
-      // }
    }
 
-   //  public static Card[] splitCardsForPlayer(int Id){
-   //      Deck deck = WebPoker.deck;
-   //      Card[] hand = new Card[25];
-   //      if (Id == 0){
-   //          for (int i = 0; i < 5; i++) {
-   //              hand[i] = deck.cards[i];
-   //              //System.out.println("Suite = " + hand[i].suite);
-   //              //System.out.println("Value = " + hand[i].value);
-   //          }
-   //          return hand;
-   //      }
-   //      else if (Id == 1) {
-   //          for (int i = 5; i < 10; i++) {
-   //              hand[i] = deck.cards[i];
-   //             //  System.out.println("Suite = " + hand[i].suite);
-   //             //  System.out.println("Value = " + hand[i].value);
-   //          }
-   //          return hand;
-   //      }
-   //      else if (Id == 2) {
-   //          for (int i = 10; i < 15; i++) {
-   //              hand[i] = deck.cards[i];
-   //             //  System.out.println("Suite = " + hand[i].suite);
-   //             //  System.out.println("Value = " + hand[i].value);
-   //          }
-   //          return hand;
-   //      }
-   //      else if (Id == 3) {
-   //          for (int i = 15; i < 20; i++) {
-   //             hand[i] = deck.cards[i];
-   //             //  System.out.println("Suite = " + hand[i].suite);
-   //             //  System.out.println("Value = " + hand[i].value);
-   //          }
-   //          return hand;
-   //      }
-   //      else if (Id == 4) {
-   //          for (int i = 20; i < 25; i++) {
-   //              hand[i] = deck.cards[i];
-   //             //  System.out.println("Suite = " + hand[i].suite);
-   //             //  System.out.println("Value = " + hand[i].value);
-   //          }
-   //          return hand;
-   //      }
-   //      else {
-   //          System.out.println("The if statement don't work");
-   //          return null;
-   //      }
-   //  }
+   public boolean is_better_than(Deck h1) {
+      return false;
+   }
 }
