@@ -46,13 +46,14 @@ import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
 import java.util.Timer;
 import java.util.TimerTask;
+import uta.cse3310.Player;
 
 /**
  * A simple WebSocketServer implementation. Keeps track of a "chatroom".
  */
 public class WebPoker extends WebSocketServer {
 
-  public static int numPlayers;
+  public int numPlayers;
   private Game game;
   public int action = 0;
   private Object mutex = new Object();
@@ -86,7 +87,8 @@ public class WebPoker extends WebSocketServer {
 
     // Since this is a new connection, it is also a new player
     numPlayers = numPlayers + 1; // player id's start at 0
-    Player player = new Player(numPlayers);
+    Player player = new Player();
+    player.Player_ID(numPlayers);
     if (numPlayers == 0) {
       System.out.println("starting a new game");
       game = new Game();

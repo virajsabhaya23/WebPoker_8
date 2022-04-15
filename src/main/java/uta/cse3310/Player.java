@@ -3,15 +3,16 @@ package uta.cse3310;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import uta.cse3310.Deck;
+import uta.cse3310.WebPoker;
 
 public class Player {
-    public static int Id; // Made Changes here
-    public static int Wallet = 100; // Made Changes here
+    int Id; // Made Changes here
+    int Wallet = 100; // Made Changes here
     String Name;
     String LastMessageToPlayer;
-    public static Card[] hand = new Card[5];
+    public Card[] hand = new Card[5];
 
-    public Player(int id) {
+    public void Player_ID(int id) {
         Id = id;
         Name = "not set";
         hand = splitCardsForPlayer();
