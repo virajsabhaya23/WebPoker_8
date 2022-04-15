@@ -54,8 +54,8 @@ public class Game {
         // Made Changes here
         if (event.event == UserEventType.STAND) {
             System.out.println("Inside stand event" + player_turn);
-            if (play.Id == player_turn) {
-                System.out.println("Player " + play.Id + " STANDS");
+            if (players.get(event.playerID).Id == player_turn) {    //VS changed 04/15 I just replaced all play.Id to players.get(event.playerID).Id
+                System.out.println("Player " + players.get(event.playerID).Id + " STANDS");
 
                 // Switch Statement For STAND in each round
                 switch (round_num) {
@@ -66,13 +66,13 @@ public class Game {
                         } else {
                             play.Wallet = play.Wallet - bet_amount;
                             pot = pot + bet_amount;
-                            System.out.println("Player " + play.Id + " Bets " + bet_amount);
+                            System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
                         break;
 
                     // Change
                     case 1:
-                        System.out.println("Player " + play.Id + " Keeps all their cards");
+                        System.out.println("Player " + players.get(event.playerID).Id + " Keeps all their cards");
                         break;
 
                     // Bet
@@ -82,7 +82,7 @@ public class Game {
                         } else {
                             play.Wallet = play.Wallet - bet_amount;
                             pot = pot + bet_amount;
-                            System.out.println("Player " + play.Id + " Bets " + bet_amount);
+                            System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
                         break;
 
@@ -99,7 +99,7 @@ public class Game {
                 }
             } 
             else {
-                System.out.println(play.Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
+                System.out.println(players.get(event.playerID).Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
             }
         }
 
@@ -109,9 +109,9 @@ public class Game {
         System.out.println("Before hit event");
         if (event.event == UserEventType.HIT) {
             System.out.println("Inside hit event");
-            if (play.Id == player_turn) {
+            if (players.get(event.playerID).Id == player_turn) {
                 player_turn = player_turn + 1;
-                System.out.println("Player " + play.Id + " HITS");
+                System.out.println("Player " + players.get(event.playerID).Id + " HITS");
 
                 // Switch Statement For HIT in each round
                 switch (round_num) {
@@ -124,13 +124,13 @@ public class Game {
                         } else {
                             play.Wallet = play.Wallet - bet_amount;
                             pot = pot + bet_amount;
-                            System.out.println("Player " + play.Id + " Bets " + bet_amount);
+                            System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
                         break;
 
                     // Change
                     case 1:
-                        System.out.println("Player " + play.Id + " Changes their first 3 cards");
+                        System.out.println("Player " + players.get(event.playerID).Id + " Changes their first 3 cards");
                         for (int n = 0; n < 3; n++) {
                             play.hand[n] = WebPoker.deck.cards[place_hold];
                         }
@@ -145,7 +145,7 @@ public class Game {
                         } else {
                             play.Wallet = play.Wallet - bet_amount;
                             pot = pot + bet_amount;
-                            System.out.println("Player " + play.Id + " Bets " + bet_amount);
+                            System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
                         break;
 
@@ -161,7 +161,7 @@ public class Game {
                     num_bets = 0;
                 }
             } else {
-                System.out.println(play.Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
+                System.out.println(players.get(event.playerID).Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
             }
         }
 
@@ -170,9 +170,9 @@ public class Game {
         System.out.println("Before call event"+ player_turn);
         if (event.event == UserEventType.CALL) {
             System.out.println("Inside call event"+ player_turn);
-            if (play.Id == player_turn) {
+            if (players.get(event.playerID).Id == player_turn) {
                 player_turn = player_turn + 1;
-                System.out.println("Player " + play.Id + " CALLS");
+                System.out.println("Player " + players.get(event.playerID).Id + " CALLS");
 
                 // Switch Statement For CALL in each round
                 switch (round_num) {
@@ -183,12 +183,12 @@ public class Game {
                         } else {
                             play.Wallet = play.Wallet - bet_amount;
                             pot = pot + bet_amount;
-                            System.out.println("Player " + play.Id + " Bets " + bet_amount);
+                            System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
                         break;
                     // Change is Round 1
                     case 1:
-                        System.out.println("Player " + play.Id + " Keeps all their cards");
+                        System.out.println("Player " + players.get(event.playerID).Id + " Keeps all their cards");
                         break;
                     // Bet is Round 2
                     case 2:
@@ -197,7 +197,7 @@ public class Game {
                         } else {
                             play.Wallet = play.Wallet - bet_amount;
                             pot = pot + bet_amount;
-                            System.out.println("Player " + play.Id + " Bets " + bet_amount);
+                            System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
                         break;
                     // Showdown is Round 3
@@ -212,7 +212,7 @@ public class Game {
                     num_bets = 0;
                 }
             } else {
-                System.out.println(play.Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
+                System.out.println(players.get(event.playerID).Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
             }
         }
     }
