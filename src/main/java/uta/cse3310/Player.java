@@ -6,8 +6,8 @@ import uta.cse3310.Deck;
 import uta.cse3310.WebPoker;
 
 public class Player {
-    int Id; // Made Changes here
-    int Wallet = 100; // Made Changes here
+    public int Id; // Made Changes here
+    public int Wallet = 100; // Made Changes here
     String Name;
     String LastMessageToPlayer;
     public Card[] hand = new Card[5];
@@ -15,8 +15,10 @@ public class Player {
     public void Player_ID(int id) {
         Id = id;
         Name = "not set";
+        //int Wallet = Wallet;
         hand = splitCardsForPlayer();
     }
+    
 
     public void SetName(String N) {
         Name = N;
@@ -27,9 +29,9 @@ public class Player {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
-
+    // players.get(event.playerID).hand[n]
     public Card[] splitCardsForPlayer() {
-        Deck deck = WebPoker.deck;
+        Deck deck = new Deck();         // Might need to change this later......
         System.out.println("ID # = " + Id);
         if (Id == 0) {
             for (int i = 0; i < 5; i++) {

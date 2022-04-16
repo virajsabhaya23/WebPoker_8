@@ -20,6 +20,7 @@ public class Game {
     int bet_amount = 0; // Made Changes here
     int pot = 0; // Made Changes here
     int place_hold = 25; // Made Changes here
+    int numPlayers = 0;
     ArrayList<Player> players = new ArrayList<>();
 
     public String exportStateAsJSON() {
@@ -29,6 +30,9 @@ public class Game {
 
     public void addPlayer(Player p) {
         players.add(p);
+        System.out.println("Adding a Player");
+        numPlayers = numPlayers + 1;
+        System.out.println("numPlayers = " + numPlayers);
     }
 
     public void removePlayer(int playerid) {
@@ -38,33 +42,34 @@ public class Game {
     }
 
     public void processMessage(String msg) {
-        System.out.println("It is " + player_turn +"'s Turn!!!");
+        System.out.println("It is " + player_turn + "'s Turn!!! numPlayers = "+ numPlayers);
 
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
-        Player play = new Player();
+        // Player play = new Player();
         UserEvent event = gson.fromJson(msg, UserEvent.class);
 
         if (event.event == UserEventType.NAME) {
             players.get(event.playerID).SetName(event.name);
             players.get(event.playerID).splitCardsForPlayer();
         }
-        
+
         System.out.println("Before stand event" + player_turn);
         // Made Changes here
         if (event.event == UserEventType.STAND) {
             System.out.println("Inside stand event" + player_turn);
-            if (players.get(event.playerID).Id == player_turn) {    //VS changed 04/15 I just replaced all play.Id to players.get(event.playerID).Id
+            if (players.get(event.playerID).Id == player_turn) { // VS changed 04/15 I just replaced all play.Id to
+                                                                 // players.get(event.playerID).Id
                 System.out.println("Player " + players.get(event.playerID).Id + " STANDS");
 
                 // Switch Statement For STAND in each round
                 switch (round_num) {
                     // Bet
                     case 0:
-                        if (play.Wallet < bet_amount) {
+                        if (players.get(event.playerID).Wallet < bet_amount) {
                             System.out.println("You broke ass hoe, smh <(*-*)>");
                         } else {
-                            play.Wallet = play.Wallet - bet_amount;
+                            players.get(event.playerID).Wallet = players.get(event.playerID).Wallet - bet_amount;
                             pot = pot + bet_amount;
                             System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
@@ -77,10 +82,10 @@ public class Game {
 
                     // Bet
                     case 2:
-                        if (play.Wallet < bet_amount) {
+                        if (players.get(event.playerID).Wallet < bet_amount) {
                             System.out.println("You broke ass hoe, smh <(*-*)>");
                         } else {
-                            play.Wallet = play.Wallet - bet_amount;
+                            players.get(event.playerID).Wallet = players.get(event.playerID).Wallet - bet_amount;
                             pot = pot + bet_amount;
                             System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
@@ -91,15 +96,15 @@ public class Game {
                         System.out.println("Yea I need to implement this lol...");
                         break;
                 }
-                if (players.size() < player_turn) {
+                if (player_turn > (numPlayers - 1)) {
                     System.out.println("Round Complete, Starting next Round now!");
                     round_num = round_num + 1;
                     player_turn = 0;
                     num_bets = 0;
                 }
-            } 
-            else {
-                System.out.println(players.get(event.playerID).Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
+            } else {
+                System.out.println(players.get(event.playerID).Id + ", it is not your Turn :(\n" + "It is "
+                        + player_turn + "'s Turn!!!");
             }
         }
 
@@ -119,10 +124,10 @@ public class Game {
                     case 0:
                         num_bets = num_bets + 1;
                         bet_amount = num_bets * 10;
-                        if (play.Wallet < bet_amount) {
+                        if (players.get(event.playerID).Wallet < bet_amount) {
                             System.out.println("You broke ass hoe, smh <(*-*)>");
                         } else {
-                            play.Wallet = play.Wallet - bet_amount;
+                            players.get(event.playerID).Wallet = players.get(event.playerID).Wallet - bet_amount;
                             pot = pot + bet_amount;
                             System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
@@ -132,7 +137,7 @@ public class Game {
                     case 1:
                         System.out.println("Player " + players.get(event.playerID).Id + " Changes their first 3 cards");
                         for (int n = 0; n < 3; n++) {
-                            play.hand[n] = WebPoker.deck.cards[place_hold];
+                            players.get(event.playerID).hand[n] = players.get(event.playerID).hand[place_hold];
                         }
                         break;
 
@@ -140,10 +145,10 @@ public class Game {
                     case 2:
                         num_bets = num_bets + 1;
                         bet_amount = num_bets * 10;
-                        if (play.Wallet < bet_amount) {
+                        if (players.get(event.playerID).Wallet < bet_amount) {
                             System.out.println("You broke ass hoe, smh <(*-*)>");
                         } else {
-                            play.Wallet = play.Wallet - bet_amount;
+                            players.get(event.playerID).Wallet = players.get(event.playerID).Wallet - bet_amount;
                             pot = pot + bet_amount;
                             System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
@@ -154,22 +159,24 @@ public class Game {
                         System.out.println("Yea I need to implement this lol...");
                         break;
                 }
-                if (players.size() < player_turn) {
+                // Try or equals later if this does not work
+                if (player_turn > (numPlayers - 1)) {
                     System.out.println("Round Complete, Starting next Round now!");
                     round_num = round_num + 1;
                     player_turn = 0;
                     num_bets = 0;
                 }
             } else {
-                System.out.println(players.get(event.playerID).Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
+                System.out.println(players.get(event.playerID).Id + ", it is not your Turn :(\n" + "It is "
+                        + player_turn + "'s Turn!!!");
             }
         }
 
         // Made Changes here
         // Calling means you pass or you match the bet/ raise
-        System.out.println("Before call event"+ player_turn);
+        System.out.println("Before call event" + player_turn);
         if (event.event == UserEventType.CALL) {
-            System.out.println("Inside call event"+ player_turn);
+            System.out.println("Inside call event" + player_turn);
             if (players.get(event.playerID).Id == player_turn) {
                 player_turn = player_turn + 1;
                 System.out.println("Player " + players.get(event.playerID).Id + " CALLS");
@@ -178,10 +185,10 @@ public class Game {
                 switch (round_num) {
                     // Bet Round is Round 0
                     case 0:
-                        if (play.Wallet < bet_amount) {
+                        if (players.get(event.playerID).Wallet < bet_amount) {
                             System.out.println("You broke ass hoe, smh <(*-*)>");
                         } else {
-                            play.Wallet = play.Wallet - bet_amount;
+                            players.get(event.playerID).Wallet = players.get(event.playerID).Wallet - bet_amount;
                             pot = pot + bet_amount;
                             System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
@@ -192,10 +199,10 @@ public class Game {
                         break;
                     // Bet is Round 2
                     case 2:
-                        if (play.Wallet < bet_amount) {
+                        if (players.get(event.playerID).Wallet < bet_amount) {
                             System.out.println("You broke ass hoe, smh <(*-*)>");
                         } else {
-                            play.Wallet = play.Wallet - bet_amount;
+                            players.get(event.playerID).Wallet = players.get(event.playerID).Wallet - bet_amount;
                             pot = pot + bet_amount;
                             System.out.println("Player " + players.get(event.playerID).Id + " Bets " + bet_amount);
                         }
@@ -205,22 +212,23 @@ public class Game {
                         System.out.println("Yea I need to implement this lol...");
                         break;
                 }
-                if (players.size() < player_turn) {
+
+                if (player_turn > (numPlayers - 1)) {
                     System.out.println("Round Complete, Starting next Round now!");
                     round_num = round_num + 1;
                     player_turn = 0;
                     num_bets = 0;
                 }
             } else {
-                System.out.println(players.get(event.playerID).Id +", it is not your Turn :(\n" + "It is " + player_turn +"'s Turn!!!");
+                System.out.println(players.get(event.playerID).Id + ", it is not your Turn :(\n" + "It is "
+                        + player_turn + "'s Turn!!!");
             }
         }
     }
-    
+
     public boolean update() {
         seconds = seconds + 1;
         if ((seconds % 10) == 0) {
-            player_turn = player_turn + 1;
             if (player_turn == 5) {
                 player_turn = 0;
             }
