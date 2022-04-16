@@ -14,47 +14,53 @@
     <div class="section header">
       <div class="container">
         <div class="row">
-          <h2 class="header-heading">Group 8: WebPoker</h2>
+          <h3 class="header-stuff header-heading">Group 8: WebPoker</h3>
+          <a class="below-header-stuff" href="#">Home</a>
         </div>
       </div>
     </div>
     <div class="section cards">
       <div class="button-primary">
         <!-- <a href="index.jsp"> -->
-          <button class="deal-button" type="submit" id="sendDeal" name="sendDeal"  onclick="deal()"> 
+          <button class="gm-butts deal-button" type="submit" id="sendDeal" name="sendDeal"  onclick="deal()"> 
             Deal
           </button>
         <!-- </a> -->
       </div>
       <div class="container">
-        <div class="row">
-          <img id="card1" src="img/0B.svg"/>
-          <img id="card2" src="img/0B.svg"/>
-          <img id="card3" src="img/0B.svg"/>
-          <img id="card4" src="img/0B.svg"/>
-          <img id="card5" src="img/0B.svg"/>
+        <div class="row dealer-cards-row">
+          <img class="dealer-cards" id="card1" src="img/0B.svg"/>
+          <img class="dealer-cards" id="card2" src="img/0B.svg"/>
+          <img class="dealer-cards" id="card3" src="img/0B.svg"/>
+          <img class="dealer-cards" id="card4" src="img/0B.svg"/>
+          <img class="dealer-cards" id="card5" src="img/0B.svg"/>
         </div>
       </div>
     </div>
 
-    <div class="section form-name-message">
-      <div class="container">
-          <div class="row">
-            <label for="nameInput">Your Name</label>
-            <input type="text" id="sendName"/>
-            <input class="button-primary" type="button" name="sendName" value="Send" onclick="sendName()"/>
-          </div>
-          <div class="row">
-            <label for="nameInput">Message</label>
-            <textarea class="u-full-width" id="send_text"></textarea>
-            <input class="button-primary" type="button" name="send_button" value="Send" onclick="send()"/>
-          </div>
-          <div class="player-game-buttons">
-            <input type="button" id="sendCall" name="sendCall" value="Call" onclick="call()">
-            <input type="button" id="sendStand" name="sendStand" value="Stand" onclick="stand()">
-            <input type="button" id="sendHit" name="sendHit" value="Hit" onclick="hit()">
-            <!-- <input type="button" id="sendFold" name="sendFold" value="Fold" onclick="fold()"> -->
-          </div>					
+    <div class="last-third-section section form-name-message">
+      <div class="last-third-section-container container">
+        <!-- <div class="last-third-section-left-part hands-ranking-img">
+          <img height="300" src="https://thebestpokersitesonline.com/wp-content/uploads/2021/01/poker-hand-rankings.jpg">
+        </div> -->
+        <div class="last-third-section-part">
+            <div class="row last-third-section-name-row">
+              <label class="label label-name" for="nameInput">Your Name -</label>
+              <input type="text" id="sendName"/>
+              <input class="button-primary" type="button" name="sendName" value="Send" onclick="sendName()"/>
+            </div>
+            <div class="row last-third-section-message-row">
+              <label class="label label-message" for="nameInput">Message -</label>
+              <textarea class="" id="send_text"></textarea>
+              <input class="button-primary" type="button" name="send_button" value="Send" onclick="send()"/>
+            </div>
+            <div class="last-third-section-gm-butts">
+              <input class="gm-butts call-button" type="button" id="sendCall" name="sendCall" value="Call" onclick="call()">
+              <input class="gm-butts stand-button" type="button" id="sendStand" name="sendStand" value="Stand" onclick="stand()">
+              <input class="gm-butts hit-button" type="button" id="sendHit" name="sendHit" value="Hit" onclick="hit()">
+              <!-- <input type="button" id="sendFold" name="sendFold" value="Fold" onclick="fold()"> -->
+            </div>	
+        </div>				
       </div>
     </div>
 

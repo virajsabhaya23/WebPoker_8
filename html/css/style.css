@@ -1,10 +1,10 @@
 body {
-	background-color: lightblue;
+	background-color: #006400;
 }
 
 .section {
 	text-align: center;
-	padding: 2rem 0 2rem;
+	padding: 2rem 0 0rem;
 }
 
 div.section.cards div.container div.row {
@@ -21,3 +21,60 @@ div.section.cards div.container div.row {
 	justify-content: center;
 }
 
+.header-heading {
+	/* text-align: left; */
+	color: #fff;
+}
+
+.label{
+	color: #eee;
+}
+
+.last-third-section-container {
+	display: flex;;
+}
+.last-third-section-left-part{
+	justify-content: flex-start;
+	float: left;
+}
+.last-third-section-right-part{
+	justify-content: flex-end;
+	float: left;
+}
+
+.last-third-section-name-row{
+	display: flex;
+	justify-content: flex-end;
+	text-align: right;
+	flex-grow: 1;
+}
+.label-name{
+	float: left;
+}
+.last-third-section-message-row{
+	display: flex;
+	justify-content: flex-end;
+	text-align: right;
+	flex-grow: 1;
+}
+.label-message{
+	float: left;
+	display: flex;
+}
+.last-third-section-gm-butts{
+	justify-content: flex-end;
+	text-align: right;
+	vertical-align: right;
+	flex-grow: 1;
+}
+.hands-ranking-img{
+	display: flex;
+	justify-content: flex-start;
+	margin: auto 1em;
+}
+
+
+/* img{ 
+	width: 90px;
+	height: 90px;
+} */
