@@ -57,7 +57,7 @@ public class WebPoker extends WebSocketServer {
   private Game game;
   public int action = 0;
   private Object mutex = new Object();
-  public Deck deck = new Deck();//no static needed
+  public Deck deck = new Deck();// no static needed
 
   private void setNumPlayers(int N) {
     numPlayers = N;
@@ -165,7 +165,7 @@ public class WebPoker extends WebSocketServer {
     }
   }
 
-  public static void main(String[] args) throws InterruptedException, IOException {//no static needed
+  public static void main(String[] args) throws InterruptedException, IOException {// no static needed
 
     // Create and start the http server
     HttpServer H = new HttpServer(8088, "./html");

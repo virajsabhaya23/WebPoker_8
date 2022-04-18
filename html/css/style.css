@@ -73,6 +73,10 @@ div.section.cards div.container div.row {
 	margin: auto 1em;
 }
 
+.player-id-section-class{
+	text-align: center;
+	color: #eee;
+}
 
 /* img{ 
 	width: 90px;

@@ -21,7 +21,10 @@ public class Game {
     int pot = 0; // Made Changes here
     int place_hold = 25; // Made Changes here
     int numPlayers = 0;
+    int highestNumber = 0;
+    int numOwner = 0;
     ArrayList<Player> players = new ArrayList<>();
+    final static Deck deck = Deck.randomize(); // if no work take away static and final
 
     public String exportStateAsJSON() {
         Gson gson = new Gson();
@@ -42,7 +45,7 @@ public class Game {
     }
 
     public void processMessage(String msg) {
-        System.out.println("It is " + player_turn + "'s Turn!!! numPlayers = "+ numPlayers);
+        System.out.println("It is " + player_turn + "'s Turn!!! numPlayers = " + numPlayers);
 
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
@@ -59,7 +62,7 @@ public class Game {
         if (event.event == UserEventType.STAND) {
             System.out.println("Inside stand event" + player_turn);
             if (players.get(event.playerID).Id == player_turn) { // VS changed 04/15 I just replaced all play.Id to
-                                                                 // players.get(event.playerID).Id
+                player_turn = player_turn + 1;
                 System.out.println("Player " + players.get(event.playerID).Id + " STANDS");
 
                 // Switch Statement For STAND in each round
@@ -94,13 +97,24 @@ public class Game {
                     // Showdown
                     case 3:
                         System.out.println("Yea I need to implement this lol...");
+                        if (players.get(event.playerID).hnd.ranking > highestNumber) {
+                            highestNumber = players.get(event.playerID).hnd.ranking;
+                            numOwner = players.get(event.playerID).Id;
+                        } else {
+                            System.out.println("Sorry sport your hand was ass");
+                        }
                         break;
                 }
                 if (player_turn > (numPlayers - 1)) {
-                    System.out.println("Round Complete, Starting next Round now!");
-                    round_num = round_num + 1;
-                    player_turn = 0;
-                    num_bets = 0;
+                    if (round_num == 3) {
+                        System.out.println("The Winner is " + numOwner);
+                        System.out.println("Please Leave");
+                    } else {
+                        System.out.println("Round Complete, Starting next Round now!");
+                        round_num = round_num + 1;
+                        player_turn = 0;
+                        num_bets = 0;
+                    }
                 }
             } else {
                 System.out.println(players.get(event.playerID).Id + ", it is not your Turn :(\n" + "It is "
@@ -157,14 +171,25 @@ public class Game {
                     // Showdown is Round 3
                     case 3:
                         System.out.println("Yea I need to implement this lol...");
+                        if (players.get(event.playerID).hnd.ranking > highestNumber) {
+                            highestNumber = players.get(event.playerID).hnd.ranking;
+                            numOwner = players.get(event.playerID).Id;
+                        } else {
+                            System.out.println("Sorry sport your hand was ass");
+                        }
                         break;
                 }
                 // Try or equals later if this does not work
                 if (player_turn > (numPlayers - 1)) {
-                    System.out.println("Round Complete, Starting next Round now!");
-                    round_num = round_num + 1;
-                    player_turn = 0;
-                    num_bets = 0;
+                    if (round_num == 3) {
+                        System.out.println("The Winner is " + numOwner);
+                        System.out.println("Please Leave");
+                    } else {
+                        System.out.println("Round Complete, Starting next Round now!");
+                        round_num = round_num + 1;
+                        player_turn = 0;
+                        num_bets = 0;
+                    }
                 }
             } else {
                 System.out.println(players.get(event.playerID).Id + ", it is not your Turn :(\n" + "It is "
@@ -210,14 +235,25 @@ public class Game {
                     // Showdown is Round 3
                     case 3:
                         System.out.println("Yea I need to implement this lol...");
+                        if (players.get(event.playerID).hnd.ranking > highestNumber) {
+                            highestNumber = players.get(event.playerID).hnd.ranking;
+                            numOwner = players.get(event.playerID).Id;
+                        } else {
+                            System.out.println("Sorry sport your hand was ass");
+                        }
                         break;
                 }
 
                 if (player_turn > (numPlayers - 1)) {
-                    System.out.println("Round Complete, Starting next Round now!");
-                    round_num = round_num + 1;
-                    player_turn = 0;
-                    num_bets = 0;
+                    if (round_num == 3) {
+                        System.out.println("The Winner is " + numOwner);
+                        System.out.println("Please Leave");
+                    } else {
+                        System.out.println("Round Complete, Starting next Round now!");
+                        round_num = round_num + 1;
+                        player_turn = 0;
+                        num_bets = 0;
+                    }
                 }
             } else {
                 System.out.println(players.get(event.playerID).Id + ", it is not your Turn :(\n" + "It is "
@@ -229,7 +265,7 @@ public class Game {
     public boolean update() {
         seconds = seconds + 1;
         if ((seconds % 10) == 0) {
-            if (player_turn == 5) {
+            if (player_turn == numPlayers - 1) {
                 player_turn = 0;
             }
             return true;
@@ -238,8 +274,6 @@ public class Game {
     }
 
     public Game() {
-        System.out.println("Going into loop");
-        System.out.println("Somehow made it out of the loop");
     }
 
 }
