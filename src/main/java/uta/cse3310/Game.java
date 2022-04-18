@@ -57,10 +57,10 @@ public class Game {
             players.get(event.playerID).splitCardsForPlayer();
         }
 
-        System.out.println("Before stand event" + player_turn);
+        // System.out.println("Before stand event" + player_turn);
         // Made Changes here
         if (event.event == UserEventType.STAND) {
-            System.out.println("Inside stand event" + player_turn);
+            // System.out.println("Inside stand event" + player_turn);
             if (players.get(event.playerID).Id == player_turn) { // VS changed 04/15 I just replaced all play.Id to
                 player_turn = player_turn + 1;
                 System.out.println("Player " + players.get(event.playerID).Id + " STANDS");
@@ -96,7 +96,9 @@ public class Game {
 
                     // Showdown
                     case 3:
-                        System.out.println("Yea I need to implement this lol...");
+                        System.out.println("Showdown");
+                        System.out.println("Current Highest Ranking: " + highestNumber);
+                        System.out.println("Player Ranking: " + players.get(event.playerID).hnd.ranking);
                         if (players.get(event.playerID).hnd.ranking > highestNumber) {
                             highestNumber = players.get(event.playerID).hnd.ranking;
                             numOwner = players.get(event.playerID).Id;
@@ -125,9 +127,9 @@ public class Game {
         // Made Changes here
         // Hitting means you want to change cards, make them change the first 3 cards
         // for now
-        System.out.println("Before hit event");
+        // System.out.println("Before hit event");
         if (event.event == UserEventType.HIT) {
-            System.out.println("Inside hit event");
+            // System.out.println("Inside hit event");
             if (players.get(event.playerID).Id == player_turn) {
                 player_turn = player_turn + 1;
                 System.out.println("Player " + players.get(event.playerID).Id + " HITS");
@@ -150,8 +152,13 @@ public class Game {
                     // Change
                     case 1:
                         System.out.println("Player " + players.get(event.playerID).Id + " Changes their first 3 cards");
-                        for (int n = 0; n < 3; n++) {
-                            players.get(event.playerID).hand[n] = players.get(event.playerID).hand[place_hold];
+                        for (int n = 1; n <= 3; n++) {
+                            System.out.println("\nOld Cards: " + players.get(event.playerID).hand[n].value + " "
+                                    + players.get(event.playerID).hand[n].suite);
+                            players.get(event.playerID).hand[n] = deck.cards[place_hold];
+                            System.out.println("\nNew Cards: " + players.get(event.playerID).hand[n].value + " "
+                                    + players.get(event.playerID).hand[n].suite + "\n");
+                            place_hold = place_hold + n;
                         }
                         break;
 
@@ -170,7 +177,9 @@ public class Game {
 
                     // Showdown is Round 3
                     case 3:
-                        System.out.println("Yea I need to implement this lol...");
+                        System.out.println("Showdown");
+                        System.out.println("Current Highest Ranking: " + highestNumber);
+                        System.out.println("Player Ranking: " + players.get(event.playerID).hnd.ranking);
                         if (players.get(event.playerID).hnd.ranking > highestNumber) {
                             highestNumber = players.get(event.playerID).hnd.ranking;
                             numOwner = players.get(event.playerID).Id;
@@ -199,9 +208,9 @@ public class Game {
 
         // Made Changes here
         // Calling means you pass or you match the bet/ raise
-        System.out.println("Before call event" + player_turn);
+        // System.out.println("Before call event" + player_turn);
         if (event.event == UserEventType.CALL) {
-            System.out.println("Inside call event" + player_turn);
+            // System.out.println("Inside call event" + player_turn);
             if (players.get(event.playerID).Id == player_turn) {
                 player_turn = player_turn + 1;
                 System.out.println("Player " + players.get(event.playerID).Id + " CALLS");
@@ -234,7 +243,9 @@ public class Game {
                         break;
                     // Showdown is Round 3
                     case 3:
-                        System.out.println("Yea I need to implement this lol...");
+                        System.out.println("Showdown");
+                        System.out.println("Current Highest Ranking: " + highestNumber);
+                        System.out.println("Player Ranking: " + players.get(event.playerID).hnd.ranking);
                         if (players.get(event.playerID).hnd.ranking > highestNumber) {
                             highestNumber = players.get(event.playerID).hnd.ranking;
                             numOwner = players.get(event.playerID).Id;
@@ -265,7 +276,7 @@ public class Game {
     public boolean update() {
         seconds = seconds + 1;
         if ((seconds % 10) == 0) {
-            if (player_turn == numPlayers - 1) {
+            if (player_turn > (numPlayers - 1)) {
                 player_turn = 0;
             }
             return true;
