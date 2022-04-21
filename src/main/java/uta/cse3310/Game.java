@@ -60,7 +60,7 @@ public class Game {
 
         if (event.event == UserEventType.NAME) {
             players.get(event.playerID).SetName(event.name);
-            //players.get(event.playerID).splitCardsForPlayer();
+            // players.get(event.playerID).splitCardsForPlayer();
         }
         // dealButtonPress = 0;
         // System.out.println("Before stand event" + player_turn);
@@ -160,10 +160,10 @@ public class Game {
                         System.out.println("Player " + players.get(event.playerID).Id + " Changes their first 3 cards");
                         for (int n = 1; n <= 3; n++) {
                             System.out.println("\nOld Cards: " + players.get(event.playerID).hand[n].value + " "
-                                    + players.get(event.playerID).hand[n].suite);
+                                    + players.get(event.playerID).hand[n].suit);
                             players.get(event.playerID).hand[n] = deck.cards[place_hold];
                             System.out.println("\nNew Cards: " + players.get(event.playerID).hand[n].value + " "
-                                    + players.get(event.playerID).hand[n].suite + "\n");
+                                    + players.get(event.playerID).hand[n].suit + "\n");
                             place_hold = place_hold + n;
                         }
                         break;

@@ -28,11 +28,11 @@ public class Player {
         int diamondsCount = 0;
 
         for (int j = 0; j < 5; j++) {
-            if (hnd.cards[j].suite == Card.Suite.valueOf("SPADES")) {
+            if (hnd.cards[j].suit == Card.Suit.valueOf("SPADES")) {
                 spadesCount++;
-            } else if (hnd.cards[j].suite == Card.Suite.valueOf("HEARTS")) {
+            } else if (hnd.cards[j].suit == Card.Suit.valueOf("HEARTS")) {
                 heartsCount++;
-            } else if (hnd.cards[j].suite == Card.Suite.valueOf("CLUBS")) {
+            } else if (hnd.cards[j].suit == Card.Suit.valueOf("CLUBS")) {
                 clubsCount++;
             } else {
                 diamondsCount++;
@@ -145,7 +145,7 @@ public class Player {
             }
             hand = sort(hnd); // testing sort func()
             for (int i = 0; i < 5; i++) {
-                System.out.println(hand[i].value + "-" + hand[i].suite);
+                System.out.println(hand[i].value + "-" + hand[i].suit);
             }
             return hand;
         } else if (Id == 1) {
@@ -155,7 +155,7 @@ public class Player {
             }
             hand = sort(hnd); // testing sort func()
             for (int i = 0; i < 5; i++) {
-                System.out.println(hand[i].value + "-" + hand[i].suite);
+                System.out.println(hand[i].value + "-" + hand[i].suit);
             }
             return hand;
         } else if (Id == 2) {
@@ -164,7 +164,7 @@ public class Player {
             }
             hand = sort(hnd); // testing sort func()
             for (int i = 0; i < 5; i++) {
-                System.out.println(hand[i].value + "-" + hand[i].suite);
+                System.out.println(hand[i].value + "-" + hand[i].suit);
             }
             return hand;
         } else if (Id == 3) {
@@ -173,7 +173,7 @@ public class Player {
             }
             hand = sort(hnd); // testing sort func()
             for (int i = 0; i < 5; i++) {
-                System.out.println(hand[i].value + "-" + hand[i].suite);
+                System.out.println(hand[i].value + "-" + hand[i].suit);
             }
             return hand;
         } else if (Id == 4) {
@@ -182,7 +182,7 @@ public class Player {
             }
             hand = sort(hnd); // testing sort func()
             for (int i = 0; i < 5; i++) {
-                System.out.println(hand[i].value + "-" + hand[i].suite);
+                System.out.println(hand[i].value + "-" + hand[i].suit);
             }
             return hand;
         } else {

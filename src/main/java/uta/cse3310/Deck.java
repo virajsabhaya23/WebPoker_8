@@ -16,172 +16,172 @@ public class Deck {
       }
       // TWOS
       cards[0].value = Card.Value.valueOf("TWO");
-      cards[0].suite = Card.Suite.valueOf("SPADES");
+      cards[0].suit = Card.Suit.valueOf("SPADES");
 
       cards[1].value = Card.Value.valueOf("TWO");
-      cards[1].suite = Card.Suite.valueOf("HEARTS");
+      cards[1].suit = Card.Suit.valueOf("HEARTS");
 
       cards[2].value = Card.Value.valueOf("TWO");
-      cards[2].suite = Card.Suite.valueOf("CLUBS");
+      cards[2].suit = Card.Suit.valueOf("CLUBS");
 
       cards[3].value = Card.Value.valueOf("TWO");
-      cards[3].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[3].suit = Card.Suit.valueOf("DIAMONDS");
 
       // THREES
       cards[4].value = Card.Value.valueOf("THREE");
-      cards[4].suite = Card.Suite.valueOf("SPADES");
+      cards[4].suit = Card.Suit.valueOf("SPADES");
 
       cards[5].value = Card.Value.valueOf("THREE");
-      cards[5].suite = Card.Suite.valueOf("HEARTS");
+      cards[5].suit = Card.Suit.valueOf("HEARTS");
 
       cards[6].value = Card.Value.valueOf("THREE");
-      cards[6].suite = Card.Suite.valueOf("CLUBS");
+      cards[6].suit = Card.Suit.valueOf("CLUBS");
 
       cards[7].value = Card.Value.valueOf("THREE");
-      cards[7].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[7].suit = Card.Suit.valueOf("DIAMONDS");
 
       // FOURS
       cards[8].value = Card.Value.valueOf("FOUR");
-      cards[8].suite = Card.Suite.valueOf("SPADES");
+      cards[8].suit = Card.Suit.valueOf("SPADES");
 
       cards[9].value = Card.Value.valueOf("FOUR");
-      cards[9].suite = Card.Suite.valueOf("HEARTS");
+      cards[9].suit = Card.Suit.valueOf("HEARTS");
 
       cards[10].value = Card.Value.valueOf("FOUR");
-      cards[10].suite = Card.Suite.valueOf("CLUBS");
+      cards[10].suit = Card.Suit.valueOf("CLUBS");
 
       cards[11].value = Card.Value.valueOf("FOUR");
-      cards[11].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[11].suit = Card.Suit.valueOf("DIAMONDS");
 
       // FIVES
       cards[12].value = Card.Value.valueOf("FIVE");
-      cards[12].suite = Card.Suite.valueOf("SPADES");
+      cards[12].suit = Card.Suit.valueOf("SPADES");
 
       cards[13].value = Card.Value.valueOf("FIVE");
-      cards[13].suite = Card.Suite.valueOf("HEARTS");
+      cards[13].suit = Card.Suit.valueOf("HEARTS");
 
       cards[14].value = Card.Value.valueOf("FIVE");
-      cards[14].suite = Card.Suite.valueOf("CLUBS");
+      cards[14].suit = Card.Suit.valueOf("CLUBS");
 
       cards[15].value = Card.Value.valueOf("FIVE");
-      cards[15].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[15].suit = Card.Suit.valueOf("DIAMONDS");
 
       // SIXES
       cards[16].value = Card.Value.valueOf("SIX");
-      cards[16].suite = Card.Suite.valueOf("SPADES");
+      cards[16].suit = Card.Suit.valueOf("SPADES");
 
       cards[17].value = Card.Value.valueOf("SIX");
-      cards[17].suite = Card.Suite.valueOf("HEARTS");
+      cards[17].suit = Card.Suit.valueOf("HEARTS");
 
       cards[18].value = Card.Value.valueOf("SIX");
-      cards[18].suite = Card.Suite.valueOf("CLUBS");
+      cards[18].suit = Card.Suit.valueOf("CLUBS");
 
       cards[19].value = Card.Value.valueOf("SIX");
-      cards[19].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[19].suit = Card.Suit.valueOf("DIAMONDS");
 
       // SEVENS
       cards[20].value = Card.Value.valueOf("SEVEN");
-      cards[20].suite = Card.Suite.valueOf("SPADES");
+      cards[20].suit = Card.Suit.valueOf("SPADES");
 
       cards[21].value = Card.Value.valueOf("SEVEN");
-      cards[21].suite = Card.Suite.valueOf("HEARTS");
+      cards[21].suit = Card.Suit.valueOf("HEARTS");
 
       cards[22].value = Card.Value.valueOf("SEVEN");
-      cards[22].suite = Card.Suite.valueOf("CLUBS");
+      cards[22].suit = Card.Suit.valueOf("CLUBS");
 
       cards[23].value = Card.Value.valueOf("SEVEN");
-      cards[23].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[23].suit = Card.Suit.valueOf("DIAMONDS");
 
       // EIGHTS
       cards[24].value = Card.Value.valueOf("EIGHT");
-      cards[24].suite = Card.Suite.valueOf("SPADES");
+      cards[24].suit = Card.Suit.valueOf("SPADES");
 
       cards[25].value = Card.Value.valueOf("EIGHT");
-      cards[25].suite = Card.Suite.valueOf("HEARTS");
+      cards[25].suit = Card.Suit.valueOf("HEARTS");
 
       cards[26].value = Card.Value.valueOf("EIGHT");
-      cards[26].suite = Card.Suite.valueOf("CLUBS");
+      cards[26].suit = Card.Suit.valueOf("CLUBS");
 
       cards[27].value = Card.Value.valueOf("EIGHT");
-      cards[27].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[27].suit = Card.Suit.valueOf("DIAMONDS");
 
       // NINES
       cards[28].value = Card.Value.valueOf("NINE");
-      cards[28].suite = Card.Suite.valueOf("SPADES");
+      cards[28].suit = Card.Suit.valueOf("SPADES");
 
       cards[29].value = Card.Value.valueOf("NINE");
-      cards[29].suite = Card.Suite.valueOf("HEARTS");
+      cards[29].suit = Card.Suit.valueOf("HEARTS");
 
       cards[30].value = Card.Value.valueOf("NINE");
-      cards[30].suite = Card.Suite.valueOf("CLUBS");
+      cards[30].suit = Card.Suit.valueOf("CLUBS");
 
       cards[31].value = Card.Value.valueOf("NINE");
-      cards[31].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[31].suit = Card.Suit.valueOf("DIAMONDS");
 
       // TENS
       cards[32].value = Card.Value.valueOf("TEN");
-      cards[32].suite = Card.Suite.valueOf("SPADES");
+      cards[32].suit = Card.Suit.valueOf("SPADES");
 
       cards[33].value = Card.Value.valueOf("TEN");
-      cards[33].suite = Card.Suite.valueOf("HEARTS");
+      cards[33].suit = Card.Suit.valueOf("HEARTS");
 
       cards[34].value = Card.Value.valueOf("TEN");
-      cards[34].suite = Card.Suite.valueOf("CLUBS");
+      cards[34].suit = Card.Suit.valueOf("CLUBS");
 
       cards[35].value = Card.Value.valueOf("TEN");
-      cards[35].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[35].suit = Card.Suit.valueOf("DIAMONDS");
 
       // JACKS
       cards[36].value = Card.Value.valueOf("JACK");
-      cards[36].suite = Card.Suite.valueOf("SPADES");
+      cards[36].suit = Card.Suit.valueOf("SPADES");
 
       cards[37].value = Card.Value.valueOf("JACK");
-      cards[37].suite = Card.Suite.valueOf("HEARTS");
+      cards[37].suit = Card.Suit.valueOf("HEARTS");
 
       cards[38].value = Card.Value.valueOf("JACK");
-      cards[38].suite = Card.Suite.valueOf("CLUBS");
+      cards[38].suit = Card.Suit.valueOf("CLUBS");
 
       cards[39].value = Card.Value.valueOf("JACK");
-      cards[39].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[39].suit = Card.Suit.valueOf("DIAMONDS");
 
       // QUEENS
       cards[40].value = Card.Value.valueOf("QUEEN");
-      cards[40].suite = Card.Suite.valueOf("SPADES");
+      cards[40].suit = Card.Suit.valueOf("SPADES");
 
       cards[41].value = Card.Value.valueOf("QUEEN");
-      cards[41].suite = Card.Suite.valueOf("HEARTS");
+      cards[41].suit = Card.Suit.valueOf("HEARTS");
 
       cards[42].value = Card.Value.valueOf("QUEEN");
-      cards[42].suite = Card.Suite.valueOf("CLUBS");
+      cards[42].suit = Card.Suit.valueOf("CLUBS");
 
       cards[43].value = Card.Value.valueOf("QUEEN");
-      cards[43].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[43].suit = Card.Suit.valueOf("DIAMONDS");
 
       // KINGS
       cards[44].value = Card.Value.valueOf("KING");
-      cards[44].suite = Card.Suite.valueOf("SPADES");
+      cards[44].suit = Card.Suit.valueOf("SPADES");
 
       cards[45].value = Card.Value.valueOf("KING");
-      cards[45].suite = Card.Suite.valueOf("HEARTS");
+      cards[45].suit = Card.Suit.valueOf("HEARTS");
 
       cards[46].value = Card.Value.valueOf("KING");
-      cards[46].suite = Card.Suite.valueOf("CLUBS");
+      cards[46].suit = Card.Suit.valueOf("CLUBS");
 
       cards[47].value = Card.Value.valueOf("KING");
-      cards[47].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[47].suit = Card.Suit.valueOf("DIAMONDS");
 
       // ACES
       cards[48].value = Card.Value.valueOf("ACE");
-      cards[48].suite = Card.Suite.valueOf("SPADES");
+      cards[48].suit = Card.Suit.valueOf("SPADES");
 
       cards[49].value = Card.Value.valueOf("ACE");
-      cards[49].suite = Card.Suite.valueOf("HEARTS");
+      cards[49].suit = Card.Suit.valueOf("HEARTS");
 
       cards[50].value = Card.Value.valueOf("ACE");
-      cards[50].suite = Card.Suite.valueOf("CLUBS");
+      cards[50].suit = Card.Suit.valueOf("CLUBS");
 
       cards[51].value = Card.Value.valueOf("ACE");
-      cards[51].suite = Card.Suite.valueOf("DIAMONDS");
+      cards[51].suit = Card.Suit.valueOf("DIAMONDS");
 
       // Random rand = new Random();
       // Card[] temparr = new Card[1];
@@ -212,7 +212,7 @@ public class Deck {
          int randidx = rand.nextInt(52);
          if (temp.cards[randidx].flag == false) {
             deck.cards[i] = temp.cards[randidx];
-            System.out.println(deck.cards[i].value + "-" + deck.cards[i].suite);
+            System.out.println(deck.cards[i].value + "-" + deck.cards[i].suit);
             temp.cards[randidx].flag = true;
          } else {
             i = i - 1;

@@ -1,7 +1,7 @@
 package uta.cse3310;
 
 public class Card {
-    public enum Suite {
+    public enum Suit {
         HEARTS, CLUBS, DIAMONDS, SPADES
     }
 
@@ -10,7 +10,7 @@ public class Card {
         TEN, JACK, QUEEN, KING, ACE
     }
 
-    public Suite suite;
+    public Suit suit;
     public Value value;
 
     public boolean flag = false;
