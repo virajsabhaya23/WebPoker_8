@@ -5,95 +5,95 @@ const connection = new WebSocket(serverUrl);
 var cardLUT;
 
 
-// const VALUES = {
-// 	TWO: '2',
-// 	THREE: '3',
-// 	FOUR: '4',
-// 	FIVE: '5',
-// 	SIX: '6',
-// 	SEVEN: '7',
-// 	EIGHT: '8',
-// 	NINE: '9',
-// 	TEN: '10',
-// 	JACK: '11',
-// 	QUEEN: '12',
-// 	KING: '13',
-// 	ACE: '14'
-// };
+const VALUES = {
+	TWO: '2',
+	THREE: '3',
+	FOUR: '4',
+	FIVE: '5',
+	SIX: '6',
+	SEVEN: '7',
+	EIGHT: '8',
+	NINE: '9',
+	TEN: '10',
+	JACK: '11',
+	QUEEN: '12',
+	KING: '13',
+	ACE: '14'
+};
 
-// const SUITS = {
-// 	SPADES: 'S',
-// 	CLUBS: 'C',
-// 	HEARTS: 'H',
-// 	DIAMONDS: 'D',
-// };
+const SUITS = {
+	SPADES: 'S',
+	CLUBS: 'C',
+	HEARTS: 'H',
+	DIAMONDS: 'D',
+};
 
-// this.valuesMap = {
-// 	TWO: VALUES.TWO,
-// 	THREE: VALUES.THREE,
-// 	FOUR: VALUES.FOUR,
-// 	FIVE: VALUES.FIVE,
-// 	SIX: VALUES.SIX,
-// 	SEVEN: VALUES.SEVEN,
-// 	EIGHT: VALUES.EIGHT,
-// 	NINE: VALUES.NINE,
-// 	TEN: VALUES.TEN,
-// 	JACK: VALUES.JACK,
-// 	QUEEN: VALUES.QUEEN,
-// 	KING: VALUES.KING,
-// 	ACE: VALUES.ACE
-// };
+this.valuesMap = {
+	TWO: VALUES.TWO,
+	THREE: VALUES.THREE,
+	FOUR: VALUES.FOUR,
+	FIVE: VALUES.FIVE,
+	SIX: VALUES.SIX,
+	SEVEN: VALUES.SEVEN,
+	EIGHT: VALUES.EIGHT,
+	NINE: VALUES.NINE,
+	TEN: VALUES.TEN,
+	JACK: VALUES.JACK,
+	QUEEN: VALUES.QUEEN,
+	KING: VALUES.KING,
+	ACE: VALUES.ACE
+};
 
-// this.suitsMap = {
-// 	SPADES: SUITS.SPADES,
-// 	CLUBS: SUITS.CLUBS,
-// 	HEARTS: SUITS.HEARTS,
-// 	DIAMONDS: SUITS.DIAMONDS,
-// };
+this.suitsMap = {
+	SPADES: SUITS.SPADES,
+	CLUBS: SUITS.CLUBS,
+	HEARTS: SUITS.HEARTS,
+	DIAMONDS: SUITS.DIAMONDS,
+};
 
 
-// const newobj = [
-// 	{
-// 		"suit": "DIAMONDS",
-// 		"value": "KING",
-// 		"flag": true
-// 	},
-// 	{
-// 		"suit": "SPADES",
-// 		"value": "SEVEN",
-// 		"flag": true
-// 	},
-// 	{
-// 		"suit": "CLUBS",
-// 		"value": "SEVEN",
-// 		"flag": true
-// 	},
-// 	{
-// 		"suit": "HEARTS",
-// 		"value": "FIVE",
-// 		"flag": true
-// 	},
-// 	{
-// 		"suit": "SPADES",
-// 		"value": "THREE",
-// 		"flag": true
-// 	}
-// ]
+const newobj = [
+	{
+		"suit": "DIAMONDS",
+		"value": "KING",
+		"flag": true
+	},
+	{
+		"suit": "SPADES",
+		"value": "SEVEN",
+		"flag": true
+	},
+	{
+		"suit": "CLUBS",
+		"value": "SEVEN",
+		"flag": true
+	},
+	{
+		"suit": "HEARTS",
+		"value": "FIVE",
+		"flag": true
+	},
+	{
+		"suit": "SPADES",
+		"value": "THREE",
+		"flag": true
+	}
+]
 
-// console.log(newobj[0].suit);
-// console.log(newobj[0].value);
+console.log(newobj[0].suit);
+console.log(newobj[0].value);
 
-// console.log("spacer");
+console.log("spacer");
 
-// for (var i = 0; i < 5; i++) {
-// 	for (var key in newobj[i]) {
-// 		console.log(newobj[i].suit + " - " + newobj[i].value);
-// 	}
-// }
+for (var i = 0; i < 5; i++) {
+	for (var key in newobj[i]) {
+		console.log(newobj[i].suit + " - " + newobj[i].value);
+	}
+}
 
 convertCards(cards) {
-	const number = this.cardsMap[card.rank];
-	const suit = this.suitsMap[card.suit];
+	const number = this.valuesMap[cards.value];
+	const suit = this.suitsMap[cards.suit];
 	return `${number}${suit}`;
 }
 
