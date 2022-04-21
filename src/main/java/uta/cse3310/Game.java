@@ -23,6 +23,7 @@ public class Game {
     int numPlayers = 0;
     int highestNumber = 0;
     int numOwner = 0;
+    int dealButtonPress = 0;
     ArrayList<Player> players = new ArrayList<>();
     final static Deck deck = Deck.randomize(); // if no work take away static and final
 
@@ -52,11 +53,16 @@ public class Game {
         // Player play = new Player();
         UserEvent event = gson.fromJson(msg, UserEvent.class);
 
-        if (event.event == UserEventType.NAME) {
-            players.get(event.playerID).SetName(event.name);
+        if (event.event == UserEventType.DEAL) {
+            dealButtonPress = 1;
             players.get(event.playerID).splitCardsForPlayer();
         }
 
+        if (event.event == UserEventType.NAME) {
+            players.get(event.playerID).SetName(event.name);
+            //players.get(event.playerID).splitCardsForPlayer();
+        }
+        // dealButtonPress = 0;
         // System.out.println("Before stand event" + player_turn);
         // Made Changes here
         if (event.event == UserEventType.STAND) {
@@ -259,6 +265,7 @@ public class Game {
                     if (round_num == 3) {
                         System.out.println("The Winner is " + numOwner);
                         System.out.println("Please Leave");
+                        // game.NewGame();
                     } else {
                         System.out.println("Round Complete, Starting next Round now!");
                         round_num = round_num + 1;

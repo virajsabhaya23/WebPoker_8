@@ -31,8 +31,14 @@ connection.onmessage = function (evt) {
 
 	// Take the msg and turn it into a javascript object
 	const obj = JSON.parse(msg);
-	if (!obj.players) {
+
+	if (!obj.players) { // if obj.players exists, get playerID and print to console and to textbox HTML id with formatting. else use look up table to swap between a set of cards in game update?? idk wtf the point of that is.
 		playerID = obj.Id;
+
+		// testing printing of obj to get obj struct
+		alert(JSON.stringify(obj.hand)) // alert pushes a modal with the request in firefox
+
+
 		console.log("player ID = " + playerID);
 		document.getElementById("textbox").innerText =
 			document.getElementById("textbox").innerText +
@@ -62,7 +68,7 @@ connection.onmessage = function (evt) {
 	console.log("the cardIdx is " + cardIdx);
 };
 
-connection.onclose = function(event) {
+connection.onclose = function (event) {
 	if (event.wasClean) {
 		console.log("connection closed");
 	} else {
