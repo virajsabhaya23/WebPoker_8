@@ -14,8 +14,6 @@ public class Card {
     public Value value;
 
     public boolean delt = false;
-    // public int ranking;
-    // public int highCard;
 
     public Card() {
     }

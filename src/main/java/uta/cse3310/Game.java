@@ -1,18 +1,11 @@
 package uta.cse3310;
 
 import java.util.ArrayList;
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-
 import uta.cse3310.UserEvent.UserEventType;
-import uta.cse3310.WebPoker;
-import uta.cse3310.Deck; // Made Changes here
-import uta.cse3310.Player; // Made Changes here
-import java.util.*;
 
 public class Game {
-
     private transient int seconds;
     int round_num = 0; // Made Changes here
     int player_turn = 0; // Made Changes here
@@ -41,7 +34,6 @@ public class Game {
     }
 
     public void removePlayer(int playerid) {
-
         if (playerid != 0)
             players.remove(playerid - 1);
     }
@@ -62,7 +54,7 @@ public class Game {
         if (event.event == UserEventType.NAME) {
             int Id = players.get(event.playerID).Id;
             players.get(event.playerID).SetName(event.name);
-            players.get(event.playerID).splitCardsForPlayer();
+            players.get(event.playerID).hand.splitCardsForPlayer(Id);
             // players.get(event.playerID).Player_ID(Id);
         }
 
@@ -108,9 +100,9 @@ public class Game {
                     case 3:
                         System.out.println("Showdown");
                         System.out.println("Current Highest Ranking: " + highestNumber);
-                        System.out.println("Player Ranking: " + players.get(event.playerID).hnd.ranking);
-                        if (players.get(event.playerID).hnd.ranking > highestNumber) {
-                            highestNumber = players.get(event.playerID).hnd.ranking;
+                        System.out.println("Player Ranking: " + players.get(event.playerID).hand.ranking);
+                        if (players.get(event.playerID).hand.ranking > highestNumber) {
+                            highestNumber = players.get(event.playerID).hand.ranking;
                             numOwner = players.get(event.playerID).Id;
                         } else {
                             System.out.println("Sorry sport your hand was ass");
@@ -163,22 +155,22 @@ public class Game {
                     case 1:
                         System.out.println("BEFORE HAND CHANGES");
                         for (int j = 0; j < 5; j++) {
-                            System.out.println(players.get(event.playerID).hand[j].value + " "
-                                    + players.get(event.playerID).hand[j].suit);
+                            System.out.println(players.get(event.playerID).hand.cards[j].value + " "
+                                    + players.get(event.playerID).hand.cards[j].suit);
                         }
                         System.out.println("Player " + players.get(event.playerID).Id + " Changes their first 3 cards");
                         for (int n = 1; n <= 3; n++) {
-                            System.out.println("\nOld Cards: " + players.get(event.playerID).hand[n].value + " "
-                                    + players.get(event.playerID).hand[n].suit);
-                            players.get(event.playerID).hand[n] = deck.cards[place_hold];
-                            System.out.println("\nNew Cards: " + players.get(event.playerID).hand[n].value + " "
-                                    + players.get(event.playerID).hand[n].suit + "\n");
+                            System.out.println("\nOld Cards: " + players.get(event.playerID).hand.cards[n].value + " "
+                                    + players.get(event.playerID).hand.cards[n].suit);
+                            players.get(event.playerID).hand.cards[n] = deck.cards[place_hold];
+                            System.out.println("\nNew Cards: " + players.get(event.playerID).hand.cards[n].value + " "
+                                    + players.get(event.playerID).hand.cards[n].suit + "\n");
                             place_hold = place_hold + n;
                         }
                         System.out.println("AFTER HAND CHANGES");
                         for (int j = 0; j < 5; j++) {
-                            System.out.println(players.get(event.playerID).hand[j].value + " "
-                                    + players.get(event.playerID).hand[j].suit);
+                            System.out.println(players.get(event.playerID).hand.cards[j].value + " "
+                                    + players.get(event.playerID).hand.cards[j].suit);
                         }
                         break;
 
@@ -199,9 +191,9 @@ public class Game {
                     case 3:
                         System.out.println("Showdown");
                         System.out.println("Current Highest Ranking: " + highestNumber);
-                        System.out.println("Player Ranking: " + players.get(event.playerID).hnd.ranking);
-                        if (players.get(event.playerID).hnd.ranking > highestNumber) {
-                            highestNumber = players.get(event.playerID).hnd.ranking;
+                        System.out.println("Player Ranking: " + players.get(event.playerID).hand.ranking);
+                        if (players.get(event.playerID).hand.ranking > highestNumber) {
+                            highestNumber = players.get(event.playerID).hand.ranking;
                             numOwner = players.get(event.playerID).Id;
                         } else {
                             System.out.println("Sorry sport your hand was ass");
@@ -265,9 +257,9 @@ public class Game {
                     case 3:
                         System.out.println("Showdown");
                         System.out.println("Current Highest Ranking: " + highestNumber);
-                        System.out.println("Player Ranking: " + players.get(event.playerID).hnd.ranking);
-                        if (players.get(event.playerID).hnd.ranking > highestNumber) {
-                            highestNumber = players.get(event.playerID).hnd.ranking;
+                        System.out.println("Player Ranking: " + players.get(event.playerID).hand.ranking);
+                        if (players.get(event.playerID).hand.ranking > highestNumber) {
+                            highestNumber = players.get(event.playerID).hand.ranking;
                             numOwner = players.get(event.playerID).Id;
                         } else {
                             System.out.println("Sorry sport your hand was ass");

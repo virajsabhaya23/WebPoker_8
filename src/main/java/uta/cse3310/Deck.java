@@ -1,19 +1,25 @@
 package uta.cse3310;
 
-import uta.cse3310.Card;
-import uta.cse3310.Hand;
 import java.util.*;
 
 public class Deck {
    public Card[] cards = new Card[52];
-   public int ranking;
-   public int highCard;
 
    public Deck() {
 
       for (int i = 0; i < 52; i++) {
          cards[i] = new Card();
       }
+
+      // TODO: Dynamically create a full Deck
+      // Card.Value.values()
+      // for (Card.Suit.values() : ) {
+      // for (Card.Value value : ) {
+
+      // this.add(new Card(suit, rank));
+      // }
+      // }
+
       // TWOS
       cards[0].value = Card.Value.valueOf("TWO");
       cards[0].suit = Card.Suit.valueOf("SPADES");
@@ -184,49 +190,11 @@ public class Deck {
       cards[51].suit = Card.Suit.valueOf("DIAMONDS");
    }
 
-//    public Card[] dealDeck(Card[] hand, int choice) {
-
-//       Random rand = new Random();
-//       int random;
-//       int cardsDelt = 0;
-//       int n = 0;
-//       if (choice == 1) {
-//          while (cardsDelt < 5) {
-//             random = rand.nextInt(52);
-//             if (Game.deck.cards[random].delt == false) {
-//                hand[cardsDelt] = Game.deck.cards[random];
-//                cardsDelt++;
-//                Game.deck.cards[random].delt = true;
-//             } else {
-//                System.out.println(Game.deck.cards[cardsDelt].value + " " +
-//                      Game.deck.cards[cardsDelt].suit + " Has already been delt, trying new card.");
-//             }
-//          }
-//          return hand;
-//       } else if (choice == 2) {
-//          while (n <= 3) {
-//             random = rand.nextInt(52);
-//             if (Game.deck.cards[random].delt == false) {
-//                hand[n] = Game.deck.cards[random];
-//                n++;
-//                Game.deck.cards[random].delt = true;
-//             } else {
-//                System.out.println(Game.deck.cards[n].value + " " + Game.deck.cards[n].suit + " Has already been delt, trying new card.");
-//             }
-//          }
-//          return hand;
-//       } else {
-//          return null;
-//       }
-//    }
-// }
-
    public static Deck randomize() {
-      Deck temp = new Deck();
       Deck deck = new Deck();
+      Deck temp = new Deck();
       Random rand = new Random();
-      // Card[] temparr = new Card[1];
-      // int j = (int) (Math.random() * deck.length);
+
       for (int i = 0; i < 52; i++) {
          int randidx = rand.nextInt(52);
          if (temp.cards[randidx].delt == false) {

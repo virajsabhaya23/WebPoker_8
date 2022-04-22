@@ -44,9 +44,7 @@ import org.java_websocket.drafts.Draft;
 import org.java_websocket.drafts.Draft_6455;
 import org.java_websocket.handshake.ClientHandshake;
 import org.java_websocket.server.WebSocketServer;
-import java.util.Timer;
 import java.util.TimerTask;
-import uta.cse3310.Player;
 
 /**
  * A simple WebSocketServer implementation. Keeps track of a "chatroom".
@@ -54,7 +52,7 @@ import uta.cse3310.Player;
 public class WebPoker extends WebSocketServer {
 
   public int numPlayers;
-  private Game game;
+  public Game game;
   public int action = 0;
   private Object mutex = new Object();
   public Deck deck = new Deck();// no static needed
