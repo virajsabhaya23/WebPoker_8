@@ -182,25 +182,44 @@ public class Deck {
 
       cards[51].value = Card.Value.valueOf("ACE");
       cards[51].suit = Card.Suit.valueOf("DIAMONDS");
-
-      // Random rand = new Random();
-      // Card[] temparr = new Card[1];
-      // for (int i = 0; i < cards.length; i++) {
-      // int randidx = rand.nextInt(cards.length);
-      // temparr[0] = cards[i];
-      // cards[i] = cards[randidx];
-      // cards[randidx] = temparr[0];
-      // }
-
-      // int j;
-      // Card[] temp = new Card[1];
-      // for (int i = 0; i < 52; i++) {
-      // j = rand.nextInt(52);
-      // temp[0] = cards[i];
-      // cards[i] = cards[j];
-      // cards[j] = temp[0];
-      // }
    }
+
+//    public Card[] dealDeck(Card[] hand, int choice) {
+
+//       Random rand = new Random();
+//       int random;
+//       int cardsDelt = 0;
+//       int n = 0;
+//       if (choice == 1) {
+//          while (cardsDelt < 5) {
+//             random = rand.nextInt(52);
+//             if (Game.deck.cards[random].delt == false) {
+//                hand[cardsDelt] = Game.deck.cards[random];
+//                cardsDelt++;
+//                Game.deck.cards[random].delt = true;
+//             } else {
+//                System.out.println(Game.deck.cards[cardsDelt].value + " " +
+//                      Game.deck.cards[cardsDelt].suit + " Has already been delt, trying new card.");
+//             }
+//          }
+//          return hand;
+//       } else if (choice == 2) {
+//          while (n <= 3) {
+//             random = rand.nextInt(52);
+//             if (Game.deck.cards[random].delt == false) {
+//                hand[n] = Game.deck.cards[random];
+//                n++;
+//                Game.deck.cards[random].delt = true;
+//             } else {
+//                System.out.println(Game.deck.cards[n].value + " " + Game.deck.cards[n].suit + " Has already been delt, trying new card.");
+//             }
+//          }
+//          return hand;
+//       } else {
+//          return null;
+//       }
+//    }
+// }
 
    public static Deck randomize() {
       Deck temp = new Deck();
@@ -210,10 +229,10 @@ public class Deck {
       // int j = (int) (Math.random() * deck.length);
       for (int i = 0; i < 52; i++) {
          int randidx = rand.nextInt(52);
-         if (temp.cards[randidx].flag == false) {
+         if (temp.cards[randidx].delt == false) {
             deck.cards[i] = temp.cards[randidx];
             System.out.println(deck.cards[i].value + "-" + deck.cards[i].suit);
-            temp.cards[randidx].flag = true;
+            temp.cards[randidx].delt = true;
          } else {
             i = i - 1;
          }

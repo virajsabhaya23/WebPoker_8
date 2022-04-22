@@ -25,6 +25,7 @@ public class Game {
     int numOwner = 0;
     int dealButtonPress = 0;
     ArrayList<Player> players = new ArrayList<>();
+    // final static Deck deck = new Deck();
     final static Deck deck = Deck.randomize(); // if no work take away static and final
 
     public String exportStateAsJSON() {
@@ -53,15 +54,18 @@ public class Game {
         // Player play = new Player();
         UserEvent event = gson.fromJson(msg, UserEvent.class);
 
-        if (event.event == UserEventType.DEAL) {
-            dealButtonPress = 1;
-            players.get(event.playerID).splitCardsForPlayer();
-        }
+        // if (event.event == UserEventType.DEAL) {
+        // dealButtonPress = 1;
+        // players.get(event.playerID).splitCardsForPlayer();
+        // }
 
         if (event.event == UserEventType.NAME) {
+            int Id = players.get(event.playerID).Id;
             players.get(event.playerID).SetName(event.name);
-            // players.get(event.playerID).splitCardsForPlayer();
+            players.get(event.playerID).splitCardsForPlayer();
+            // players.get(event.playerID).Player_ID(Id);
         }
+
         // dealButtonPress = 0;
         // System.out.println("Before stand event" + player_turn);
         // Made Changes here
@@ -157,6 +161,11 @@ public class Game {
 
                     // Change
                     case 1:
+                        System.out.println("BEFORE HAND CHANGES");
+                        for (int j = 0; j < 5; j++) {
+                            System.out.println(players.get(event.playerID).hand[j].value + " "
+                                    + players.get(event.playerID).hand[j].suit);
+                        }
                         System.out.println("Player " + players.get(event.playerID).Id + " Changes their first 3 cards");
                         for (int n = 1; n <= 3; n++) {
                             System.out.println("\nOld Cards: " + players.get(event.playerID).hand[n].value + " "
@@ -165,6 +174,11 @@ public class Game {
                             System.out.println("\nNew Cards: " + players.get(event.playerID).hand[n].value + " "
                                     + players.get(event.playerID).hand[n].suit + "\n");
                             place_hold = place_hold + n;
+                        }
+                        System.out.println("AFTER HAND CHANGES");
+                        for (int j = 0; j < 5; j++) {
+                            System.out.println(players.get(event.playerID).hand[j].value + " "
+                                    + players.get(event.playerID).hand[j].suit);
                         }
                         break;
 

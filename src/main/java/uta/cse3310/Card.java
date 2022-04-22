@@ -13,7 +13,7 @@ public class Card {
     public Suit suit;
     public Value value;
 
-    public boolean flag = false;
+    public boolean delt = false;
     // public int ranking;
     // public int highCard;
 

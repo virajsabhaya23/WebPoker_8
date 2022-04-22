@@ -2,8 +2,8 @@ var cardIdx = 0;
 var playerID = 0;
 var serverUrl = "ws://" + window.location.hostname + ":8888";
 const connection = new WebSocket(serverUrl);
-var cardLUT;
-
+let cardLUT = new Array();
+let cardarr = new Array();
 
 const VALUES = {
 	TWO: '2',
@@ -51,185 +51,119 @@ this.suitsMap = {
 	DIAMONDS: SUITS.DIAMONDS,
 };
 
-
-const newobj = [
-	{
-		"suit": "DIAMONDS",
-		"value": "KING",
-		"flag": true
-	},
-	{
-		"suit": "SPADES",
-		"value": "SEVEN",
-		"flag": true
-	},
-	{
-		"suit": "CLUBS",
-		"value": "SEVEN",
-		"flag": true
-	},
-	{
-		"suit": "HEARTS",
-		"value": "FIVE",
-		"flag": true
-	},
-	{
-		"suit": "SPADES",
-		"value": "THREE",
-		"flag": true
-	}
-]
-
-console.log(newobj[0].suit);
-console.log(newobj[0].value);
-
-console.log("spacer");
-
-for (var i = 0; i < 5; i++) {
-	for (var key in newobj[i]) {
-		console.log(newobj[i].suit + " - " + newobj[i].value);
-	}
+// functioning map/reduce model
+function convertCard(card) {
+	const number = this.valuesMap[card.value];
+	const suit = this.suitsMap[card.suit];
+	return `img/${number}${suit}.svg`; // vomit
 }
 
-convertCards(cards) {
-	const number = this.valuesMap[cards.value];
-	const suit = this.suitsMap[cards.suit];
-	return `${number}${suit}`;
+function convertCards(cards) {
+	return cards.map(card => this.convertCard(card));
 }
 
+connection.onopen = function (e) {
+	console.log("connection opened");
+};
 
+connection.onmessage = function (evt) {
+	let msg;
+	msg = evt.data;
 
-// connection.onopen = function (e) {
-// 	console.log("connection opened");
-// };
+	console.log("Message received: ");
 
-// connection.onmessage = function (evt) {
-// 	let msg;
-// 	msg = evt.data;
+	// Take the msg and turn it into a javascript object
+	const obj = JSON.parse(msg);
 
-// 	console.log("Message received: ");
+	if (!obj.players) {
+		playerID = obj.Id;
+		cardLUT = convertCards(obj.hand)
 
-// 	// Take the msg and turn it into a javascript object
-// 	const obj = JSON.parse(msg);
+		for (var k = 0; k < 5; k++) {
+			// iterate through call to return getElementByID
+			document.getElementById("card" + k).src = cardLUT[k];
+		}
 
-// 	if (!obj.players) { // if obj.players exists, get playerID and print to console and to textbox HTML id with formatting. else use look up table to swap between a set of cards in game update?? idk wtf the point of that is.
-// 		playerID = obj.Id;
+		console.log("player ID = " + playerID);
+		document.getElementById("textbox").innerText =
+			document.getElementById("textbox").innerText +
+			"\n\n" +
+			"Player ID is " +
+			playerID;
+	}
+};
 
-// 		for (var i = 0; i < 5; i++) {
-// 			for (var key in obj.hand[i]) {
-// 				console.log(obj.hand[i].value + " - " + obj.hand[i].suit);
+connection.onclose = function (event) {
+	if (event.wasClean) {
+		console.log("connection closed");
+	} else {
+		console.log("connection died");
+	}
+};
 
-// 			}
-// 		}
+function deal() {
+	var msg = {
+		text: document.getElementById("sendDeal").value,
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
 
+function send() {
+	var msg = {
+		text: document.getElementById("send_text").value,
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg));
+}
 
-// 		// for (var i = 0; i < 5; i++) {
-// 		// 	for (var key in obj.hand[i].suit) {
-// 		// 		// console.log(key);
-// 		// 		console.log(obj.hand[i].suit);
-// 		// 	}
-// 		// }
+function call() {
+	var msg = {
+		event: "CALL",
+		text: document.getElementById("sendCall").value,
+		playerID: playerID
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
 
-// 		// testing printing of obj to get obj struct
-// 		alert(JSON.stringify(obj.hand)) // alert pushes a modal with the request in firefox
+function stand() {
+	var msg = {
+		event: "STAND",
+		text: document.getElementById("sendStand").value,
+		playerID: playerID
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
 
-// 		console.log("player ID = " + playerID);
-// 		document.getElementById("textbox").innerText =
-// 			document.getElementById("textbox").innerText +
-// 			"\n\n" +
-// 			"Player ID is " +
-// 			playerID;
-// 	} else {
-// 		// process the game state
-// 		// this will just have one card change every time a new game state comes in.cle
-// 		// the term LUT means "look up table".  you will see it sometimes in code written last
-// 		// century.
-// 		cardLUT = [
-// 			"img/3C.svg",
-// 			"img/2H.svg",
-// 			"img/3S.svg",
-// 			"img/13C.svg",
-// 			"img/6D.svg",
-// 			"img/6C.svg",
-// 			"img/9D.svg"
-// 		];
-// 		document.getElementById("card4").src = cardLUT[cardIdx];
-// 		cardIdx = cardIdx + 1;
-// 		if (cardIdx > 6) {
-// 			cardIdx = 0;
-// 		}
-// 	}
-// 	console.log("the cardIdx is " + cardIdx);
-// };
+function hit() {
+	var msg = {
+		event: "HIT",
+		text: document.getElementById("sendHit").value,
+		playerID: playerID
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
 
-// connection.onclose = function (event) {
-// 	if (event.wasClean) {
-// 		console.log("connection closed");
-// 	} else {
-// 		console.log("connection died");
-// 	}
-// };
+function fold() {
+	var msg = {
+		text: document.getElementById("sendFold").value,
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
 
-// function deal() {
-// 	var msg = {
-// 		text: document.getElementById("sendDeal").value,
-// 	};
-// 	connection.send(JSON.stringify(msg));
-// 	console.log(JSON.stringify(msg))
-// }
-
-// function send() {
-// 	var msg = {
-// 		text: document.getElementById("send_text").value,
-// 	};
-// 	connection.send(JSON.stringify(msg));
-// 	console.log(JSON.stringify(msg));
-// }
-
-// function call() {
-// 	var msg = {
-// 		event: "CALL",
-// 		text: document.getElementById("sendCall").value,
-// 		playerID: playerID
-// 	};
-// 	connection.send(JSON.stringify(msg));
-// 	console.log(JSON.stringify(msg))
-// }
-// function stand() {
-// 	var msg = {
-// 		event: "STAND",
-// 		text: document.getElementById("sendStand").value,
-// 		playerID: playerID
-// 	};
-// 	connection.send(JSON.stringify(msg));
-// 	console.log(JSON.stringify(msg))
-// }
-// function hit() {
-// 	var msg = {
-// 		event: "HIT",
-// 		text: document.getElementById("sendHit").value,
-// 		playerID: playerID
-// 	};
-// 	connection.send(JSON.stringify(msg));
-// 	console.log(JSON.stringify(msg))
-// }
-// function fold() {
-// 	var msg = {
-// 		text: document.getElementById("sendFold").value,
-// 	};
-// 	connection.send(JSON.stringify(msg));
-// 	console.log(JSON.stringify(msg))
-// }
-
-// function sendName() {
-// 	var msg = {
-// 		event: "NAME",
-// 		name: document.getElementById("sendName").value,
-// 		playerID: playerID
-// 	};
-// 	connection.send(JSON.stringify(msg));
-// 	console.log(JSON.stringify(msg));
-// }
+function sendName() {
+	var msg = {
+		event: "NAME",
+		name: document.getElementById("sendName").value,
+		playerID: playerID
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg));
+}
 
 // 	// this shows how to hid html elements.
 // 	// like when the name is entered

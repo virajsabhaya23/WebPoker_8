@@ -121,7 +121,10 @@ public class Player {
     public void Player_ID(int id) {
         Id = id;
         Name = "not set";
+        //hnd.cards = hand;
         hand = splitCardsForPlayer();
+        hnd.cards = hand;
+        //hand = deck.dealDeck(hand, Id);
     }
 
     public void SetName(String N) {
