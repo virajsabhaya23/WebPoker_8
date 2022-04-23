@@ -15,6 +15,8 @@ public class Card {
 
     public boolean delt = false;
 
-    public Card() {
+    public Card(Suit suit, Value value) {
+        this.suit = suit;
+        this.value = value;
     }
 }

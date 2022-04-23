@@ -2,21 +2,30 @@ package uta.cse3310;
 
 import java.util.*;
 
+import uta.cse3310.Card.Suit;
+import uta.cse3310.Card.Value;
+
 public class Deck {
    public Card[] cards = new Card[52];
 
    public Deck() {
 
-      for (int i = 0; i < 52; i++) {
-         cards[i] = new Card();
-      }
+      // for (int i = 0; i < 52; i++) {
+      // cards[i] = new Card();
+      // }
 
       // TODO: Dynamically create a full Deck
-      // Card.Value.values()
-      // for (Card.Suit.values() : ) {
-      // for (Card.Value value : ) {
+      Card.Value.values();
+      // for(DATATYPE VAR : ARRAY)
+      for (Suit suit : Card.Suit.values()) {
+         for (Value value : Card.Value.values()) {
+            this.add(new Card(suit, value));
+         }
+      }
 
-      // this.add(new Card(suit, rank));
+      // for (Suit suit : Suit.values()) {
+      // for (Rank rank : Rank.values()) {
+      // deck.add(new Card(suit, rank));
       // }
       // }
 
