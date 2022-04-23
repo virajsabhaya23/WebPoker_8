@@ -7,18 +7,17 @@ import uta.cse3310.UserEvent.UserEventType;
 
 public class Game {
     private transient int seconds;
-    int round_num = 0; // Made Changes here
-    int player_turn = 0; // Made Changes here
-    int num_bets = 0; // Made Changes here
-    int bet_amount = 0; // Made Changes here
-    int pot = 0; // Made Changes here
-    int place_hold = 25; // Made Changes here
+    int round_num = 0;
+    int player_turn = 0;
+    int num_bets = 0;
+    int bet_amount = 0;
+    int pot = 0;
+    int place_hold = 25;
     int numPlayers = 0;
     int highestNumber = 0;
     int numOwner = 0;
     int dealButtonPress = 0;
     ArrayList<Player> players = new ArrayList<>();
-    // final static Deck deck = new Deck();
     final static Deck deck = Deck.randomize(); // if no work take away static and final
 
     public String exportStateAsJSON() {
@@ -34,8 +33,10 @@ public class Game {
     }
 
     public void removePlayer(int playerid) {
-        if (playerid != 0)
+        if (playerid != 0) {
             players.remove(playerid - 1);
+        }
+        numPlayers = numPlayers - 1;
     }
 
     public void processMessage(String msg) {

@@ -11,11 +11,9 @@ public class Hand {
 	// private transient int i=10;
 	// marked transient they will not serialized / deserialized
 
-	// public Card[] cards = new Card[5];
-	public Card[] cards;
+	public Card[] cards = new Card[5];
 	public int ranking;
 	public int highCard;
-	// public Hand hand = new Hand();
 	private HashMap<Card.Value, Integer> counts = new HashMap<>();
 	Deck deck = Game.deck;
 
