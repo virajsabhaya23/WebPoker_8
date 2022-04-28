@@ -1,9 +1,10 @@
 package uta.cse3310;
 
-import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import uta.cse3310.UserEvent.UserEventType;
+
+import java.util.ArrayList;
 
 public class Game {
     private transient int seconds;
@@ -18,7 +19,7 @@ public class Game {
     int numOwner = 0;
     int dealButtonPress = 0;
     ArrayList<Player> players = new ArrayList<>();
-    final static Deck deck = Deck.randomize(); // if no work take away static and final
+    final static Deck deck = Deck.randomize();
 
     public String exportStateAsJSON() {
         Gson gson = new Gson();
@@ -163,7 +164,7 @@ public class Game {
                         for (int n = 1; n <= 3; n++) {
                             System.out.println("\nOld Cards: " + players.get(event.playerID).hand.cards[n].value + " "
                                     + players.get(event.playerID).hand.cards[n].suit);
-                            players.get(event.playerID).hand.cards[n] = deck.cards[place_hold];
+//                            players.get(event.playerID).hand.cards[n] = deck.cards[place_hold];
                             System.out.println("\nNew Cards: " + players.get(event.playerID).hand.cards[n].value + " "
                                     + players.get(event.playerID).hand.cards[n].suit + "\n");
                             place_hold = place_hold + n;
