@@ -1,6 +1,7 @@
 package uta.cse3310;
 
 public class Card {
+
     public enum Suit {
         HEARTS, CLUBS, DIAMONDS, SPADES
     }

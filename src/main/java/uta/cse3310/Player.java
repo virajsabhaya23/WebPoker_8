@@ -17,7 +17,7 @@ public class Player {
     public void SetName(String N) {
         Name = N;
         LastMessageToPlayer = "Welcome " + N + " to the game.";
-        hand.splitCardsForPlayer(Id);
+//        hand.splitCardsForPlayer(Id);
     }
 
     public String asJSONString() {
