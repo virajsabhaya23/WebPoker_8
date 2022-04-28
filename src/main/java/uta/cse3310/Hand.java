@@ -21,6 +21,7 @@ public class Hand extends Deck {
 	 */
 	public Hand() {
 		this.cards = new ArrayList<>(5);
+		// TODO: Create 5 cards from Deck
 	}
 
 	public void getRanking() {
