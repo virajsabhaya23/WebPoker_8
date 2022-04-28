@@ -13,9 +13,8 @@ public class DeckTest {
 
   @Test
   public void isRandom() {
-    Deck shuffledDeck = new Deck();
     Deck unshuffledDeck = new Deck();
 
-    assertNotEquals(unshuffledDeck, shuffledDeck.randomize());
+    assertNotEquals(unshuffledDeck, Deck.randomize());
   }
 }
