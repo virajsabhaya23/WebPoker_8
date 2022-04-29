@@ -5,24 +5,66 @@ package uta.cse3310;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static uta.cse3310.Card.*;
 
-public class Hand extends Deck {
+public class Hand {
 	public ArrayList<Card> cards;
 	public int ranking;
 	public int highCard;
 	private final HashMap<Value, Integer> counts = new HashMap<>();
 
 	/**
-	 * Constructor to initialize Hand class attribute with 5 cards. Initial capacity
-	 * exists to minimize re-allocations.
+	 * Constructor to initialize Hand class attribute with 5 cards.
+	 * Initial capacity exists to minimize re-allocations.
 	 */
 	public Hand() {
 		this.cards = new ArrayList<>(5);
-		// TODO: Create 5 cards from Deck
+
+		Arrays.sort(Card.Suit.values());
+		Arrays.sort(Card.Value.values());
 	}
+
+	public Hand generateHand() {
+		Hand hand = new Hand();
+		// TODO: Create 5 cards from Deck
+		return hand;
+	}
+
+	// public Hand sort(Hand hnd) {
+	// int i, j;
+	// Value[] this_hand_enum_values = Card.Value.values();
+	//
+	// // Sort
+	// for (i = 0; i < 5; i++) {
+	// int min_ind = i;
+	// for (j = i + 1; j < 5; j++) {
+	// if (Arrays.asList(this_hand_enum_values).indexOf(hnd.cards[j].value) > Arrays
+	// .asList(this_hand_enum_values)
+	// .indexOf(hnd.cards[min_ind].value)) {
+	// min_ind = j;
+	// }
+	//
+	// }
+	// Card.Value temp = hnd.cards[min_ind].value;
+	// hnd.cards[min_ind].value = hnd.cards[i].value;
+	// hnd.cards[i].value = temp;
+	//
+	// }
+	// hnd.highCard =
+	// Arrays.asList(this_hand_enum_values).indexOf(hnd.cards[0].value);
+	// this.getRanking();
+	// return hnd;
+	// }
+
+	// public Hand sort(Hand hand) {
+	//
+	// Value[] this_hand_enum_values = Card.Value.values();
+	//
+	// return hand;
+	// }
 
 	public void getRanking() {
 		int spadesCount = 0;
@@ -43,7 +85,9 @@ public class Hand extends Deck {
 		}
 
 		Value[] this_hand_enum_values = Card.Value.values();
-		for (Card card : this.cards) {
+		ArrayList<Card> cardArrayList = this.cards;
+		for (int i = 0; i < cardArrayList.size(); i++) {
+			Card card = cardArrayList.get(i);
 			if (!counts.containsKey(card.value)) {
 				counts.put(card.value, 1);
 			} else {
@@ -56,7 +100,7 @@ public class Hand extends Deck {
 				&& ((spadesCount == 5) || (heartsCount == 5) || (clubsCount == 5) || (diamondsCount == 5))) {
 			this.ranking = 1; // Royal Flush
 		}
-//
+		//
 		else if ((!counts.containsValue(4) && !counts.containsValue(3) && !counts.containsValue(2))
 				&& ((spadesCount == 5) || (heartsCount == 5) || (clubsCount == 5) || (diamondsCount == 5))) {
 			this.ranking = 2; // Straight Flush
@@ -96,93 +140,84 @@ public class Hand extends Deck {
 		}
 	}
 
-//	public Hand sort(Hand hnd) {
-//		int i, j;
-//		Value[] this_hand_enum_values = Card.Value.values();
-//
-//		// Sort
-//		for (i = 0; i < 5; i++) {
-//			int min_ind = i;
-//			for (j = i + 1; j < 5; j++) {
-//				if (Arrays.asList(this_hand_enum_values).indexOf(hnd.cards[j].value) > Arrays
-//						.asList(this_hand_enum_values)
-//						.indexOf(hnd.cards[min_ind].value)) {
-//					min_ind = j;
-//				}
-//
-//			}
-//			Card.Value temp = hnd.cards[min_ind].value;
-//			hnd.cards[min_ind].value = hnd.cards[i].value;
-//			hnd.cards[i].value = temp;
-//
-//		}
-//		hnd.highCard = Arrays.asList(this_hand_enum_values).indexOf(hnd.cards[0].value);
-//		this.getRanking();
-//		return hnd;
-//	}
+	// public boolean is_better_than(Hand H) {
+	// Card[] this_sorted_cards = sort(this);
+	// Card[] h_sorted_cards = sort(H);
+	//
+	// this.getRanking();
+	// H.getRanking();
+	//
+	// if ((this.ranking < H.ranking) || ((this.ranking == H.ranking) &&
+	// (this.highCard > H.highCard))) {
+	// return true;
+	// }
+	// else {
+	// return false;
+	// }
+	// }
+
+	// public Hand splitCardsForPlayer(int Id) {
+	// // Deck deck = new Deck(); // Might need to change this later......
+	// // use player's hand
+	// // hnd.cards = hand;
+	// Hand hand = new Hand();
+	//
+	// System.out.println("ID # = " + Id);
+	// if (Id == 0) {
+	// for (int i = 0; i < 5; i++) {
+	// this.cards[i] = deck.cards[i];
+	// }
+	// hand = sort(this); // testing sort func()
+	// for (int i = 0; i < 5; i++) {
+	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
+	// }
+	// return hand;
+	// } else if (Id == 1) {
+	// System.out.println("I am past the first loop :)");
+	// for (int i = 0; i < 5; i++) {
+	// this.cards[i] = deck.cards[i + 5];
+	// }
+	// hand = sort(this); // testing sort func()
+	// for (int i = 0; i < 5; i++) {
+	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
+	// }
+	// return hand;
+	// } else if (Id == 2) {
+	// for (int i = 0; i < 5; i++) {
+	// this.cards[i] = deck.cards[i + 10];
+	// }
+	// hand = sort(this); // testing sort func()
+	// for (int i = 0; i < 5; i++) {
+	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
+	// }
+	// return hand;
+	// } else if (Id == 3) {
+	// for (int i = 0; i < 5; i++) {
+	// this.cards[i] = deck.cards[i + 15];
+	// }
+	// hand = sort(this); // testing sort func()
+	// for (int i = 0; i < 5; i++) {
+	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
+	// }
+	// return hand;
+	// } else if (Id == 4) {
+	// for (int i = 0; i < 5; i++) {
+	// this.cards[i] = deck.cards[i + 20];
+	// }
+	// hand = sort(this); // testing sort func()
+	// for (int i = 0; i < 5; i++) {
+	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
+	// }
+	// return hand;
+	// } else {
+	// System.out.println("The if statement don't work");
+	// return null;
+	// }
+	// }
 
 	public String asJSONString() {
 		Gson gson = new Gson();
 		return gson.toJson(this);
 	}
-
-//	public Hand splitCardsForPlayer(int Id) {
-//		// Deck deck = new Deck(); // Might need to change this later......
-//		// use player's hand
-//		// hnd.cards = hand;
-//		Hand hand = new Hand();
-//
-//		System.out.println("ID # = " + Id);
-//		if (Id == 0) {
-//			for (int i = 0; i < 5; i++) {
-//				this.cards[i] = deck.cards[i];
-//			}
-//			hand = sort(this); // testing sort func()
-//			for (int i = 0; i < 5; i++) {
-//				System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-//			}
-//			return hand;
-//		} else if (Id == 1) {
-//			System.out.println("I am past the first loop :)");
-//			for (int i = 0; i < 5; i++) {
-//				this.cards[i] = deck.cards[i + 5];
-//			}
-//			hand = sort(this); // testing sort func()
-//			for (int i = 0; i < 5; i++) {
-//				System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-//			}
-//			return hand;
-//		} else if (Id == 2) {
-//			for (int i = 0; i < 5; i++) {
-//				this.cards[i] = deck.cards[i + 10];
-//			}
-//			hand = sort(this); // testing sort func()
-//			for (int i = 0; i < 5; i++) {
-//				System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-//			}
-//			return hand;
-//		} else if (Id == 3) {
-//			for (int i = 0; i < 5; i++) {
-//				this.cards[i] = deck.cards[i + 15];
-//			}
-//			hand = sort(this); // testing sort func()
-//			for (int i = 0; i < 5; i++) {
-//				System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-//			}
-//			return hand;
-//		} else if (Id == 4) {
-//			for (int i = 0; i < 5; i++) {
-//				this.cards[i] = deck.cards[i + 20];
-//			}
-//			hand = sort(this); // testing sort func()
-//			for (int i = 0; i < 5; i++) {
-//				System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-//			}
-//			return hand;
-//		} else {
-//			System.out.println("The if statement don't work");
-//			return null;
-//		}
-//	}
 
 }
