@@ -5,23 +5,24 @@ import static org.junit.Assert.*;
 
 public class HandTest {
 
-//  @Test
-//  public void isHighCard() {
-//    final Hand hand_highCard = new Hand();
-//
-//    hand_highCard.cards.add(new Card(Card.Suit.HEARTS, Card.Value.ACE));
-//    hand_highCard.cards.add(new Card(Card.Suit.DIAMONDS, Card.Value.KING));
-//    hand_highCard.cards.add(new Card(Card.Suit.CLUBS, Card.Value.THREE));
-//    hand_highCard.cards.add(new Card(Card.Suit.CLUBS, Card.Value.FOUR));
-//    hand_highCard.cards.add(new Card(Card.Suit.SPADES, Card.Value.NINE));
-//
-//    hand_highCard.getRanking();
-//    assertEquals(10, hand_highCard.ranking);
-//  }
+  @Test
+  public void isHighCard() {
+    final Hand hand_highCard = new Hand();
+
+    hand_highCard.cards.add(new Card(Card.Suit.HEARTS, Card.Value.ACE));
+    hand_highCard.cards.add(new Card(Card.Suit.DIAMONDS, Card.Value.KING));
+    hand_highCard.cards.add(new Card(Card.Suit.CLUBS, Card.Value.THREE));
+    hand_highCard.cards.add(new Card(Card.Suit.CLUBS, Card.Value.FOUR));
+    hand_highCard.cards.add(new Card(Card.Suit.SPADES, Card.Value.NINE));
+
+    hand_highCard.getRanking();
+    assertEquals(10, hand_highCard.ranking);
+  }
 
   @Test
   public void isOnePair() {
     final Hand hand_onePair = new Hand();
+    final Hand hand_notOnePair = new Hand();
 
     hand_onePair.cards.add(new Card(Card.Suit.HEARTS, Card.Value.ACE));
     hand_onePair.cards.add(new Card(Card.Suit.SPADES, Card.Value.ACE));
@@ -29,9 +30,16 @@ public class HandTest {
     hand_onePair.cards.add(new Card(Card.Suit.SPADES, Card.Value.QUEEN));
     hand_onePair.cards.add(new Card(Card.Suit.HEARTS, Card.Value.EIGHT));
 
+    hand_notOnePair.cards.add(new Card(Card.Suit.HEARTS, Card.Value.ACE));
+    hand_notOnePair.cards.add(new Card(Card.Suit.SPADES, Card.Value.ACE));
+    hand_notOnePair.cards.add(new Card(Card.Suit.CLUBS, Card.Value.KING));
+    hand_notOnePair.cards.add(new Card(Card.Suit.DIAMONDS, Card.Value.KING));
+    hand_notOnePair.cards.add(new Card(Card.Suit.HEARTS, Card.Value.EIGHT));
+
     hand_onePair.getRanking();
+    hand_notOnePair.getRanking();
     assertEquals(9, hand_onePair.ranking);
-    System.out.println("hi");
+    assertEquals(8, hand_notOnePair.ranking);
   }
 
   @Test
@@ -86,6 +94,10 @@ public class HandTest {
     hand_flush.cards.add(new Card(Card.Suit.CLUBS, Card.Value.ACE));
     hand_flush.cards.add(new Card(Card.Suit.CLUBS, Card.Value.TWO));
 
+    for (int j = 0; j < 5; j++) {
+      System.out.println(hand_flush.cards.get(j).value);
+    }
+
     hand_flush.getRanking();
     assertEquals(5, hand_flush.ranking);
   }
@@ -119,13 +131,13 @@ public class HandTest {
   }
 
   @Test
-  public void isStraightFlush() {
+  public void isStraightFlush() { // DOES NOT WORK
     final Hand hand_straightFlush = new Hand();
     final Hand hand_notStraightFlush = new Hand();
 
     hand_straightFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.QUEEN));
     hand_straightFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.JACK));
-    hand_straightFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.TWO));
+    hand_straightFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.TEN));
     hand_straightFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.NINE));
     hand_straightFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.EIGHT));
 
@@ -145,11 +157,11 @@ public class HandTest {
   public void isRoyalFlush() {
     final Hand hand_royalFlush = new Hand();
 
-    hand_royalFlush.cards.add(new Card(Card.Suit.HEARTS, Card.Value.ACE));
-    hand_royalFlush.cards.add(new Card(Card.Suit.HEARTS, Card.Value.KING));
-    hand_royalFlush.cards.add(new Card(Card.Suit.HEARTS, Card.Value.QUEEN));
-    hand_royalFlush.cards.add(new Card(Card.Suit.HEARTS, Card.Value.JACK));
-    hand_royalFlush.cards.add(new Card(Card.Suit.HEARTS, Card.Value.THREE));
+    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.ACE));
+    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.KING));
+    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.QUEEN));
+    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.JACK));
+    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.TEN));
 
     hand_royalFlush.getRanking();
     assertEquals(1, hand_royalFlush.ranking);
