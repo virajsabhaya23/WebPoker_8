@@ -1,12 +1,9 @@
 package uta.cse3310;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 public class UserEvent {
 
     public enum UserEventType {
-        NAME, STAND, HIT, CALL;
+        NAME, STAND, HIT, CALL, DEAL;
 
         private UserEventType() {
         }
@@ -18,6 +15,7 @@ public class UserEvent {
     String stand;
     String hit;
     String call;
+    String deal;
 
     public UserEvent() {
     }

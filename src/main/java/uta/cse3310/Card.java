@@ -1,22 +1,37 @@
 package uta.cse3310;
 
 public class Card {
-    public enum Suite {
-        HEARTS, CLUBS, DIAMONDS, SPADES
-    }
 
-    public enum Value {
-        TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE,
-        TEN, JACK, QUEEN, KING, ACE
-    }
+  public enum Suit {
+    HEARTS,
+    CLUBS,
+    DIAMONDS,
+    SPADES
+  }
 
-    public Suite suite;
-    public Value value;
+  public enum Value {
+    TWO,
+    THREE,
+    FOUR,
+    FIVE,
+    SIX,
+    SEVEN,
+    EIGHT,
+    NINE,
+    TEN,
+    JACK,
+    QUEEN,
+    KING,
+    ACE
+  }
 
-    public boolean flag = false;
-    // public int ranking;
-    // public int highCard;
+  public Suit suit;
+  public Value value;
 
-    public Card() {
-    }
+  public boolean dealt = false;
+
+  public Card(Suit suit, Value value) {
+    this.suit = suit;
+    this.value = value;
+  }
 }

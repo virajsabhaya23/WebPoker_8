@@ -32,6 +32,12 @@
 
 package uta.cse3310;
 
+import org.java_websocket.WebSocket;
+import org.java_websocket.drafts.Draft;
+import org.java_websocket.drafts.Draft_6455;
+import org.java_websocket.handshake.ClientHandshake;
+import org.java_websocket.server.WebSocketServer;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -39,14 +45,7 @@ import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.nio.ByteBuffer;
 import java.util.Collections;
-import org.java_websocket.WebSocket;
-import org.java_websocket.drafts.Draft;
-import org.java_websocket.drafts.Draft_6455;
-import org.java_websocket.handshake.ClientHandshake;
-import org.java_websocket.server.WebSocketServer;
-import java.util.Timer;
 import java.util.TimerTask;
-import uta.cse3310.Player;
 
 /**
  * A simple WebSocketServer implementation. Keeps track of a "chatroom".
@@ -54,7 +53,7 @@ import uta.cse3310.Player;
 public class WebPoker extends WebSocketServer {
 
   public int numPlayers;
-  private Game game;
+  public Game game;
   public int action = 0;
   private Object mutex = new Object();
   public Deck deck = new Deck();// no static needed

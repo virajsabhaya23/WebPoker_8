@@ -2,7 +2,66 @@ var cardIdx = 0;
 var playerID = 0;
 var serverUrl = "ws://" + window.location.hostname + ":8888";
 const connection = new WebSocket(serverUrl);
-var cardLUT;
+let cardLUT = new Array();
+
+const VALUES = {
+	TWO: '2',
+	THREE: '3',
+	FOUR: '4',
+	FIVE: '5',
+	SIX: '6',
+	SEVEN: '7',
+	EIGHT: '8',
+	NINE: '9',
+	TEN: '10',
+	JACK: '11',
+	QUEEN: '12',
+	KING: '13',
+	ACE: '14'
+};
+
+const SUITS = {
+	SPADES: 'S',
+	CLUBS: 'C',
+	HEARTS: 'H',
+	DIAMONDS: 'D',
+};
+
+this.valuesMap = {
+	TWO: VALUES.TWO,
+	THREE: VALUES.THREE,
+	FOUR: VALUES.FOUR,
+	FIVE: VALUES.FIVE,
+	SIX: VALUES.SIX,
+	SEVEN: VALUES.SEVEN,
+	EIGHT: VALUES.EIGHT,
+	NINE: VALUES.NINE,
+	TEN: VALUES.TEN,
+	JACK: VALUES.JACK,
+	QUEEN: VALUES.QUEEN,
+	KING: VALUES.KING,
+	ACE: VALUES.ACE
+};
+
+this.suitsMap = {
+	SPADES: SUITS.SPADES,
+	CLUBS: SUITS.CLUBS,
+	HEARTS: SUITS.HEARTS,
+	DIAMONDS: SUITS.DIAMONDS,
+};
+
+// functioning map/reduce
+// ***************
+function convertCard(card) {
+	const number = this.valuesMap[card.value];
+	const suit = this.suitsMap[card.suit];
+	return `img/${number}${suit}.svg`; // vomit
+}
+
+function convertCards(cards) {
+	return cards.map(card => this.convertCard(card));
+}
+// ***************
 
 connection.onopen = function (e) {
 	console.log("connection opened");
@@ -14,55 +73,28 @@ connection.onmessage = function (evt) {
 
 	console.log("Message received: ");
 
-	// Not needed
-	// document.getElementById("textbox").innerText =
-	// 	document.getElementById("textbox").innerText +
-	// 	"\n\n" +
-	// 	"Message Received" +
-	// 	"\n" +
-	// 	msg;
-
-	// This is a hack for this example.
-	// The only time the WebPoker server sends data just
-	// to this client is at the beginging, when the connection
-	// is first made.  The first communication tells us which
-	// connection number we are, which is very import.
-	// So, we detect this situation where it is not game state
-
 	// Take the msg and turn it into a javascript object
 	const obj = JSON.parse(msg);
+
 	if (!obj.players) {
 		playerID = obj.Id;
+		cardLUT = convertCards(obj.hand)
+
+		for (var k = 0; k < 5; k++) {
+			// iterate through call to return getElementByID
+			document.getElementById("card" + k).src = cardLUT[k];
+		}
+
 		console.log("player ID = " + playerID);
 		document.getElementById("textbox").innerText =
 			document.getElementById("textbox").innerText +
 			"\n\n" +
 			"Player ID is " +
 			playerID;
-	} else {
-		// process the game state
-		// this will just have one card change every time a new game state comes in.cle
-		// the term LUT means "look up table".  you will see it sometimes in code written last
-		// century.
-		cardLUT = [
-			"img/3C.svg",
-			"img/2H.svg",
-			"img/3S.svg",
-			"img/13C.svg",
-			"img/6D.svg",
-			"img/6C.svg",
-			"img/9D.svg"
-		];
-		document.getElementById("card4").src = cardLUT[cardIdx];
-		cardIdx = cardIdx + 1;
-		if (cardIdx > 6) {
-			cardIdx = 0;
-		}
 	}
-	console.log("the cardIdx is " + cardIdx);
 };
 
-connection.onclose = function(event) {
+connection.onclose = function (event) {
 	if (event.wasClean) {
 		console.log("connection closed");
 	} else {
@@ -95,6 +127,7 @@ function call() {
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg))
 }
+
 function stand() {
 	var msg = {
 		event: "STAND",
@@ -104,6 +137,7 @@ function stand() {
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg))
 }
+
 function hit() {
 	var msg = {
 		event: "HIT",
@@ -113,13 +147,14 @@ function hit() {
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg))
 }
-// function fold() {
-// 	var msg = {
-// 		text: document.getElementById("sendFold").value,
-// 	};
-// 	connection.send(JSON.stringify(msg));
-// 	console.log(JSON.stringify(msg))
-// }
+
+function fold() {
+	var msg = {
+		text: document.getElementById("sendFold").value,
+	};
+	connection.send(JSON.stringify(msg));
+	console.log(JSON.stringify(msg))
+}
 
 function sendName() {
 	var msg = {
