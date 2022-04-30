@@ -17,7 +17,6 @@ public class Game {
     int numPlayers = 0;
     int highestNumber = 0;
     int numOwner = 0;
-    int dealButtonPress = 0;
     ArrayList<Player> players = new ArrayList<>();
     public Deck deck = new Deck();
 
@@ -36,9 +35,9 @@ public class Game {
         System.out.println("numPlayers = " + numPlayers);
     }
 
-    public void removePlayer(int playerid) {
-        if (playerid != 0) {
-            players.remove(playerid - 1);
+    public void removePlayer(int playerID) {
+        if (playerID != 0) {
+            players.remove(playerID - 1);
         }
         numPlayers = numPlayers - 1;
     }
@@ -291,7 +290,7 @@ public class Game {
         }
 
         // Made Changes here
-        // Calling means you pass or you match the bet/ raise
+        // Calling means you pass, or you match the bet/ raise
         // System.out.println("Before call event" + player_turn);
         if (event.event == UserEventType.CALL) {
             // System.out.println("Inside call event" + player_turn);

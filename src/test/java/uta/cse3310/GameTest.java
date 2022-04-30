@@ -1,8 +1,10 @@
 package uta.cse3310;
 
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 
@@ -14,9 +16,6 @@ public class GameTest {
     game.addPlayer(p);
     game.addPlayer(p);
     game.addPlayer(p);
-
-    System.out.println(p.Id);
-
     assertEquals(3, game.numPlayers);
   }
 
@@ -32,9 +31,6 @@ public class GameTest {
     game.removePlayer(0);
     game.removePlayer(1);
     game.removePlayer(2);
-
-    System.out.println(p.Id);
-
     assertEquals(0, game.numPlayers);
   }
 }

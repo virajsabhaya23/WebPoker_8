@@ -157,11 +157,11 @@ public class HandTest {
   public void isRoyalFlush() {
     final Hand hand_royalFlush = new Hand();
 
+    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.JACK));
     hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.ACE));
     hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.KING));
-    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.QUEEN));
-    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.JACK));
     hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.TEN));
+    hand_royalFlush.cards.add(new Card(Card.Suit.SPADES, Card.Value.QUEEN));
 
     hand_royalFlush.getRanking();
     assertEquals(1, hand_royalFlush.ranking);

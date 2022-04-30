@@ -2,13 +2,9 @@
 
 package uta.cse3310;
 
-import com.google.gson.Gson;
+import java.util.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-
-import static uta.cse3310.Card.*;
+import static uta.cse3310.Card.Value;
 
 public class Hand {
 	public ArrayList<Card> cards;
@@ -22,41 +18,13 @@ public class Hand {
 	private final HashMap<Value, Integer> counts = new HashMap<>();
 
 	/**
-	 * Constructor to initialize Hand class attribute with 5 cards.
-	 * Initial capacity exists to minimize re-allocations.
+	 * Initializes Hand class with 5 cards.
+	 * Initialization exists to minimize re-allocations.
 	 */
 	public Hand() {
 		this.cards = new ArrayList<>(5);
-
 	}
 
-	public void sort() {
-		int i, j;
-		Value[] this_hand_enum_values = Card.Value.values();
-
-		// Sort
-		for (i = 0; i < 5; i++) {
-			int min_ind = i;
-			for (j = i + 1; j < 5; j++) {
-				if (Arrays.asList(this_hand_enum_values).indexOf(this.cards.get(j).value) > Arrays
-						.asList(this_hand_enum_values)
-						.indexOf(this.cards.get(min_ind).value)) {
-					min_ind = j;
-				}
-
-			}
-			Card.Value temp = this.cards.get(min_ind).value;
-			this.cards.get(min_ind).value = this.cards.get(i).value;
-			this.cards.get(i).value = temp;
-
-		}
-		this.highCard = Arrays.asList(this_hand_enum_values).indexOf(this.cards.get(0).value);
-	}
-
-	// I am sorry for your eyes... the caveman in me had enough... i apologize for
-	// the following function
-	// Going to check the highest card and use a switch thingy hopefully the caveman
-	// in me is good lol
 	public void straightChecker() {
 
 		int i;
@@ -221,13 +189,13 @@ public class Hand {
 	}
 
 	public void getRanking() {
-
 		int spadesCount = 0;
 		int heartsCount = 0;
 		int clubsCount = 0;
 		int diamondsCount = 0;
 
-		this.sort();
+		// TODO: Better sort, but missing highCard variable
+		this.cards.sort(Collections.reverseOrder());
 
 		for (int j = 0; j < 5; j++) {
 			// System.out.println(this.cards.get(j).value);
@@ -243,7 +211,6 @@ public class Hand {
 			if (((spadesCount == 5) || (heartsCount == 5) || (clubsCount == 5) || (diamondsCount == 5))) {
 				isFlush = true;
 			}
-
 		}
 
 		ArrayList<Card> cardArrayList = this.cards;
@@ -303,10 +270,4 @@ public class Hand {
 			this.ranking = 10; // High Card
 		}
 	}
-
-	public String asJSONString() {
-		Gson gson = new Gson();
-		return gson.toJson(this);
-	}
-
 }

@@ -1,6 +1,6 @@
 package uta.cse3310;
 
-public class Card {
+public class Card implements Comparable<Card>{
 
   public enum Suit {
     HEARTS,
@@ -31,5 +31,11 @@ public class Card {
   public Card(Suit suit, Value value) {
     this.suit = suit;
     this.value = value;
+  }
+
+  @Override
+  public int compareTo(Card o) {
+    int lastCmp = value.compareTo(o.value);
+    return (lastCmp != 0 ? lastCmp : suit.compareTo(o.suit));
   }
 }
