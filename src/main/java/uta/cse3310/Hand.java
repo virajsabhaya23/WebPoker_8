@@ -28,15 +28,6 @@ public class Hand {
 	public Hand() {
 		this.cards = new ArrayList<>(5);
 
-		// Arrays.sort(Card.Suit.values());
-		// Arrays.sort(Card.Value.values());
-		// this.stream().forEach(System.out::println);
-	}
-
-	public Hand generateHand() {
-		Hand hand = new Hand();
-		// TODO: Create 5 cards from Deck
-		return hand;
 	}
 
 	public void sort() {
@@ -267,12 +258,6 @@ public class Hand {
 					counts.put(card.value, counts.get(card.value) + 1);
 				}
 			}
-			// This is where the issue is...
-			// Need way to check what the index of the
-			// if (previousValue - counts.get(card.value) == 1){
-			// straightChecker++;
-			// }
-			// previousValue = counts.get(card.value);
 		}
 
 		this.straightChecker();
@@ -318,98 +303,6 @@ public class Hand {
 			this.ranking = 10; // High Card
 		}
 	}
-
-	// public boolean is_better_than(Hand H) {
-	// Card[] this_sorted_cards = sort(this);
-	// Card[] h_sorted_cards = sort(H);
-	//
-	// this.getRanking();
-	// H.getRanking();
-	//
-	// if ((this.ranking < H.ranking) || ((this.ranking == H.ranking) &&
-	// (this.highCard > H.highCard))) {
-	// return true;
-	// }
-	// else {
-	// return false;
-	// }
-	// }
-
-	// public Hand splitCardsForPlayer(int Id) {
-	// // Deck deck = new Deck(); // Might need to change this later......
-	// // use player's hand
-	// // hnd.cards = hand;
-	// Hand hand = new Hand();
-	//
-	// System.out.println("ID # = " + Id);
-	// if (Id == 0) {
-	// for (int i = 0; i < 5; i++) {
-	// this.cards[i] = deck.cards[i];
-	// }
-	// hand = sort(this); // testing sort func()
-	// for (int i = 0; i < 5; i++) {
-	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-	// }
-	// return hand;
-	// } else if (Id == 1) {
-	// System.out.println("I am past the first loop :)");
-	// for (int i = 0; i < 5; i++) {
-	// this.cards[i] = deck.cards[i + 5];
-	// }
-	// hand = sort(this); // testing sort func()
-	// for (int i = 0; i < 5; i++) {
-	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-	// }
-	// return hand;
-	// } else if (Id == 2) {
-	// for (int i = 0; i < 5; i++) {
-	// this.cards[i] = deck.cards[i + 10];
-	// }
-	// hand = sort(this); // testing sort func()
-	// for (int i = 0; i < 5; i++) {
-	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-	// }
-	// return hand;
-	// } else if (Id == 3) {
-	// for (int i = 0; i < 5; i++) {
-	// this.cards[i] = deck.cards[i + 15];
-	// }
-	// hand = sort(this); // testing sort func()
-	// for (int i = 0; i < 5; i++) {
-	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-	// }
-	// return hand;
-	// } else if (Id == 4) {
-	// for (int i = 0; i < 5; i++) {
-	// this.cards[i] = deck.cards[i + 20];
-	// }
-	// hand = sort(this); // testing sort func()
-	// for (int i = 0; i < 5; i++) {
-	// System.out.println(this.cards[i].value + "-" + this.cards[i].suit);
-	// }
-	// return hand;
-	// } else {
-	// System.out.println("The if statement don't work");
-	// return null;
-	// }
-	// }
-
-	// // Hand straight = new Hand(); // ACE, KING, QUEEN, JACK, 10
-	// straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.ACE));
-	// straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.KING));
-	// straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.QUEEN));
-	// straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.JACK));
-	// straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.TEN));
-
-	// // Hand straight1 = new Hand(); // KING, QUEEN, JACK, 10, 9
-	// // Hand straight2 = new Hand(); // QUEEN, JACK, 10, 9, 8
-	// // Hand straight3 = new Hand(); // JACK, 10, 9, 8, 7
-	// // Hand straight4 = new Hand(); // 10, 9, 8, 7, 6
-	// // Hand straight5 = new Hand(); // 9, 8, 7, 6, 5
-	// // Hand straight6 = new Hand(); // 8, 7, 6, 5, 4
-	// // Hand straight7 = new Hand(); // 7, 6, 5, 4, 3
-	// // Hand straight8 = new Hand(); // 6, 5, 4, 3 ,2
-	// //Hand straight9 = new Hand(); // ACE, 5, 4, 3 ,2
 
 	public String asJSONString() {
 		Gson gson = new Gson();

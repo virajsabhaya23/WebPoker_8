@@ -51,7 +51,6 @@ import java.util.TimerTask;
  * A simple WebSocketServer implementation. Keeps track of a "chatroom".
  */
 public class WebPoker extends WebSocketServer {
-
   public int numPlayers;
   public Game game;
   public int action = 0;
@@ -78,6 +77,8 @@ public class WebPoker extends WebSocketServer {
     return numPlayers;
   }
 
+  // TODO: game session logic here
+
   @Override
   public void onOpen(WebSocket conn, ClientHandshake handshake) {
 
@@ -99,8 +100,11 @@ public class WebPoker extends WebSocketServer {
     // this is the only time we send info to a single client.
     // it needs to know it's player ID.
     conn.send(player.asJSONString());
-    synchronized (mutex) {
-      game.addPlayer(player);
+    // !gameSession &&
+    if ((numPlayers < 5)) {
+      synchronized (mutex) {
+        game.addPlayer(player);
+      }
     }
 
     // and as always, we send the game state to everyone
@@ -178,7 +182,7 @@ public class WebPoker extends WebSocketServer {
     s.start();
     System.out.println("WebPokerServer started on port: " + s.getPort());
 
-    System.out.println("You are going in main :)");
+
     // Below code reads from stdin, making for a pleasant way to exit
     BufferedReader sysin = new BufferedReader(new InputStreamReader(System.in));
     while (true) {

@@ -59,7 +59,7 @@ function convertCard(card) {
 }
 
 function convertCards(cards) {
-	return cards.map(card => this.convertCard(card));
+	return (cards.map(card => this.convertCard(card)));
 }
 // ***************
 
@@ -72,13 +72,15 @@ connection.onmessage = function (evt) {
 	msg = evt.data;
 
 	console.log("Message received: ");
+	// document.getElementById("textbox").innerText = document.getElementById("textbox").innerText + '\n\n' + "Message Received" + "\n" + msg;
 
 	// Take the msg and turn it into a javascript object
 	const obj = JSON.parse(msg);
 
 	if (!obj.players) {
 		playerID = obj.Id;
-		cardLUT = convertCards(obj.hand)
+		console.log(obj)
+		cardLUT = convertCards(obj.hand.cards)
 
 		for (var k = 0; k < 5; k++) {
 			// iterate through call to return getElementByID

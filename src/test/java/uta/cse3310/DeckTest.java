@@ -11,10 +11,10 @@ public class DeckTest {
     assertEquals(52, deck.deck.size());
   }
 
-  @Test
-  public void isRandom() {
-    Deck unshuffledDeck = new Deck();
+  // @Test
+  // public void isRandom() {
+  // Deck unshuffledDeck = new Deck();
 
-    assertNotEquals(unshuffledDeck, Deck.randomize());
-  }
+  // assertNotEquals(unshuffledDeck, Deck.randomize());
+  // }
 }
