@@ -3,7 +3,6 @@ var playerID = 0;
 var serverUrl = "ws://" + window.location.hostname + ":8888";
 const connection = new WebSocket(serverUrl);
 let cardLUT = new Array();
-let cardarr = new Array();
 
 const VALUES = {
 	TWO: '2',
@@ -51,7 +50,8 @@ this.suitsMap = {
 	DIAMONDS: SUITS.DIAMONDS,
 };
 
-// functioning map/reduce model
+// functioning map/reduce
+// ***************
 function convertCard(card) {
 	const number = this.valuesMap[card.value];
 	const suit = this.suitsMap[card.suit];
@@ -61,6 +61,7 @@ function convertCard(card) {
 function convertCards(cards) {
 	return cards.map(card => this.convertCard(card));
 }
+// ***************
 
 connection.onopen = function (e) {
 	console.log("connection opened");
