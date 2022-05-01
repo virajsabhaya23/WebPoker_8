@@ -2,272 +2,217 @@
 
 package uta.cse3310;
 
-import java.util.*;
-
-import static uta.cse3310.Card.Value;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Hand {
-	public ArrayList<Card> cards;
-	public int ranking;
-	public int highCard;
-	boolean twoPair = false;
-	boolean isFlush = false;
-	boolean isStraight = false;
-	boolean isRoyalFlush = false;
-	public int counter = 0;
-	private final HashMap<Value, Integer> counts = new HashMap<>();
+  public ArrayList<Card> cards;
+  public int ranking;
+  public int highestCard;
 
-	/**
-	 * Initializes Hand class with 5 cards.
-	 * Initialization exists to minimize re-allocations.
-	 */
-	public Hand() {
-		this.cards = new ArrayList<>(5);
-	}
+  /** Construct a Hand with 5 (empty) cards. Initialization exists to minimize re-allocations. */
+  public Hand() {
+    this.cards = new ArrayList<>(5);
+  }
 
-	public void straightChecker() {
+  /**
+   * Get the numerical ranking of the hand. Adds a ranking to the Hand. The higher the integer, the
+   * higher the hand.
+   */
+  public void getRanking() {
+    if (this.isFlush() && this.isStraight() && this.getHighestCard() == 12) {
+      this.ranking = 1; // Royal flush
+    } else if (this.isStraight() && this.isFlush()) {
+      this.ranking = 2; // Straight flush
+    } else if (this.isFourOfAKind()) {
+      this.ranking = 3; // Four of a kind
+    } else if (this.isFullHouse()) {
+      this.ranking = 4; // Full house
+    } else if (this.isFlush()) {
+      this.ranking = 5; // Flush
+    } else if (this.isStraight()) {
+      this.ranking = 6; // Straight
+    } else if (this.isThreeOfAKind()) {
+      this.ranking = 7; // Three of a kind
+    } else if (this.isTwoPair()) {
+      this.ranking = 8; // 2 pairs
+    } else if (this.isOnePair()) {
+      this.ranking = 9; // 1 pair
+    } else {
+      this.ranking = 10; // only thing left is high card?
+    }
+  }
 
-		int i;
-		Hand straight = new Hand();
+  /**
+   * Simply sorts the Hand values from lowest to highest.
+   *
+   * @return Ordinal of the highest position.
+   */
+  public int getHighestCard() {
+    Collections.sort(this.cards);
+    highestCard = this.cards.get(4).getValue().ordinal();
+		return highestCard;
+  }
 
-		switch (this.cards.get(0).value) {
-			// ACE, KING, QUEEN, JACK, 10
-			case ACE:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.ACE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.KING));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.QUEEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.JACK));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.TEN));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-					isRoyalFlush = true;
-				}
-				counter = 0;
-				break;
+  /**
+   * Checks for 5 consecutive matching suits.
+   *
+   * @return True if Hand contains a flush.
+   */
+  public boolean isFlush() {
+    this.cards.sort(Comparator.comparing(Card::getSuit));
+    return (this.cards.get(0).suit == this.cards.get(4).suit);
+  }
 
-			case KING:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.KING));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.QUEEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.JACK));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.TEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.NINE));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-				}
-				counter = 0;
-				break;
+  /**
+   * Checks first for an ace. If ace exists, checks for straight from 2-5 and 10-king. If ace does
+   * not exist, checks for regular straight.
+   *
+   * @return True if Hand contains a straight.
+   */
+  public boolean isStraight() {
+    int tmpPosition;
+    Collections.sort(this.cards);
+    if (this.cards.get(0).value.equals(Card.Value.ACE)) {
+      boolean option1 =
+          this.cards.get(1).value.equals(Card.Value.TWO)
+              && this.cards.get(2).value.equals(Card.Value.THREE)
+              && this.cards.get(3).value.equals(Card.Value.FOUR)
+              && this.cards.get(4).value.equals(Card.Value.FIVE);
+      boolean option2 =
+          this.cards.get(1).value.equals(Card.Value.TEN)
+              && this.cards.get(2).value.equals(Card.Value.JACK)
+              && this.cards.get(3).value.equals(Card.Value.QUEEN)
+              && this.cards.get(4).value.equals(Card.Value.KING);
+      return (option1 || option2);
+    } else {
+      tmpPosition = this.cards.get(0).value.ordinal() + 1;
+      for (int i = 1; i < 5; i++) {
+        if (this.cards.get(i).value.ordinal() != tmpPosition) {
+          return false;
+        }
+        tmpPosition++;
+      }
+    }
+    return true;
+  }
 
-			case QUEEN:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.QUEEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.JACK));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.TEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.NINE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.EIGHT));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-				}
-				counter = 0;
-				break;
+  /**
+   * Checks if the first four contains the same value or if the last four contains the same value.
+   * EZ
+   *
+   * @return True if Hand contains four of a kind.
+   */
+  public boolean isFourOfAKind() {
+    Collections.sort(this.cards);
+    boolean option1 =
+        this.cards.get(0).value.ordinal() == this.cards.get(1).value.ordinal()
+            && this.cards.get(1).value.ordinal() == this.cards.get(2).value.ordinal()
+            && this.cards.get(2).value.ordinal() == this.cards.get(3).value.ordinal();
 
-			case JACK:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.JACK));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.TEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.NINE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.EIGHT));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SEVEN));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-				}
-				counter = 0;
-				break;
+    boolean option2 =
+        this.cards.get(1).value.ordinal() == this.cards.get(2).value.ordinal()
+            && this.cards.get(2).value.ordinal() == this.cards.get(3).value.ordinal()
+            && this.cards.get(2).value.ordinal() == this.cards.get(4).value.ordinal();
 
-			case TEN:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.TEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.NINE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.EIGHT));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SEVEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SIX));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-				}
-				counter = 0;
-				break;
+    return (option1 || option2);
+  }
 
-			case NINE:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.NINE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.EIGHT));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SEVEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SIX));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.FIVE));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-				}
-				counter = 0;
-				break;
+  /**
+   * Checks if three cards in the Hand have the same value AND if the last two have the same value.
+   *
+   * @return True if Hand contains a full house.
+   */
+  public boolean isFullHouse() {
+    Collections.sort(this.cards);
+    boolean option1 =
+        this.cards.get(0).value.ordinal() == this.cards.get(1).value.ordinal()
+            && this.cards.get(1).value.ordinal() == this.cards.get(2).value.ordinal()
+            && this.cards.get(3).value.ordinal() == this.cards.get(4).value.ordinal();
 
-			case EIGHT:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.EIGHT));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SEVEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SIX));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.FIVE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.FOUR));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-				}
-				counter = 0;
-				break;
+    boolean option2 =
+        this.cards.get(0).value.ordinal() == this.cards.get(1).value.ordinal()
+            && this.cards.get(2).value.ordinal() == this.cards.get(3).value.ordinal()
+            && this.cards.get(3).value.ordinal() == this.cards.get(4).value.ordinal();
+    return (option1 || option2);
+  }
 
-			case SEVEN:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SEVEN));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SIX));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.FIVE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.FOUR));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.THREE));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-				}
-				counter = 0;
-				break;
+  /**
+   * Checks the Hand **FIRST** if there is four of a kind or a full house. If not, then checks for
+   * three repeating values in the first three, second three, and third three positions.
+   *
+   * @return True if Hand contains three of a kind.
+   */
+  public boolean isThreeOfAKind() {
+    Collections.sort(this.cards);
+    if (this.isFourOfAKind() || this.isFullHouse()) {
+      return false;
+    }
 
-			case SIX:
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.SIX));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.FIVE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.FOUR));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.THREE));
-				straight.cards.add(new Card(Card.Suit.HEARTS, Card.Value.TWO));
-				for (i = 0; i < 5; i++) {
-					if (straight.cards.get(i).value == this.cards.get(i).value) {
-						counter++;
-					}
-				}
-				if (counter == 5) {
-					isStraight = true;
-				}
-				counter = 0;
-				break;
-		}
-	}
+    boolean option1 =
+        this.cards.get(0).value.ordinal() == this.cards.get(1).value.ordinal()
+            && this.cards.get(1).value.ordinal() == this.cards.get(2).value.ordinal();
 
-	public void getRanking() {
-		int spadesCount = 0;
-		int heartsCount = 0;
-		int clubsCount = 0;
-		int diamondsCount = 0;
+    boolean option2 =
+        this.cards.get(1).value.ordinal() == this.cards.get(2).value.ordinal()
+            && this.cards.get(2).value.ordinal() == this.cards.get(3).value.ordinal();
 
-		// TODO: Better sort, but missing highCard variable
-		this.cards.sort(Collections.reverseOrder());
+    boolean option3 =
+        this.cards.get(2).value.ordinal() == this.cards.get(3).value.ordinal()
+            && this.cards.get(3).value.ordinal() == this.cards.get(4).value.ordinal();
 
-		for (int j = 0; j < 5; j++) {
-			// System.out.println(this.cards.get(j).value);
-			if (this.cards.get(j).suit == Card.Suit.valueOf("SPADES")) {
-				spadesCount++;
-			} else if (this.cards.get(j).suit == Card.Suit.valueOf("HEARTS")) {
-				heartsCount++;
-			} else if (this.cards.get(j).suit == Card.Suit.valueOf("CLUBS")) {
-				clubsCount++;
-			} else {
-				diamondsCount++;
-			}
-			if (((spadesCount == 5) || (heartsCount == 5) || (clubsCount == 5) || (diamondsCount == 5))) {
-				isFlush = true;
-			}
-		}
+    return (option1 || option2 || option3);
+  }
 
-		ArrayList<Card> cardArrayList = this.cards;
-		for (int i = 0; i < cardArrayList.size(); i++) {
-			Card card = cardArrayList.get(i);
-			if (!counts.containsKey(card.value)) {
-				counts.put(card.value, 1);
-			} else {
-				if (((counts.get(card.value) + 1) == 2) && (counts.containsValue(2))) { // if pair detected
-					twoPair = true;
-				} else {
-					counts.put(card.value, counts.get(card.value) + 1);
-				}
-			}
-		}
+  /**
+   * Checks if the Hand **FIRST** contains four of a kind, full house, or three of a kind. Then
+   * checks if the first two positions and the subsequent two positions match--across the entire
+   * Hand.
+   *
+   * @return True if Hand contains two pairs.
+   */
+  public boolean isTwoPair() {
+    Collections.sort(this.cards);
+    if (this.isFourOfAKind() || this.isFullHouse() || this.isThreeOfAKind()) {
+      return false;
+    }
 
-		this.straightChecker();
+    boolean option1 =
+        this.cards.get(0).value.ordinal() == this.cards.get(1).value.ordinal()
+            && this.cards.get(2).value.ordinal() == this.cards.get(3).value.ordinal();
 
-		if (isRoyalFlush && isFlush) {
-			this.ranking = 1; // Royal Flush
-		}
+    boolean option2 =
+        this.cards.get(1).value.ordinal() == this.cards.get(2).value.ordinal()
+            && this.cards.get(3).value.ordinal() == this.cards.get(4).value.ordinal();
 
-		else if (isStraight && isFlush) {
-			this.ranking = 2; // Straight Flush
-		}
+    boolean option3 =
+        this.cards.get(0).value.ordinal() == this.cards.get(1).value.ordinal()
+            && this.cards.get(3).value.ordinal() == this.cards.get(4).value.ordinal();
 
-		else if (counts.containsValue(4)) {
-			this.ranking = 3; // Four of a Kind
-		}
+    return (option1 || option2 || option3);
+  }
 
-		else if ((counts.containsValue(3)) && counts.containsValue(2)) {
-			this.ranking = 4; // Full House
-		}
+  /**
+   * Checks if the Hand **FIRST** contains four of a kind, full house, three of a kind, or two
+   * pairs. Then checks across the entire Hand for two matching positions.
+   *
+   * @return True if Hand contains two pairs.
+   */
+  public boolean isOnePair() {
+    Collections.sort(this.cards);
+    if (this.isFourOfAKind() || this.isFullHouse() || this.isThreeOfAKind() || this.isTwoPair()) {
+      return false;
+    }
 
-		else if (isFlush) {
-			this.ranking = 5; // Flush
-		}
+    boolean option1 = this.cards.get(0).value.ordinal() == this.cards.get(1).value.ordinal();
 
-		else if (isStraight) {
-			this.ranking = 6; // Straight
-		}
+    boolean option2 = this.cards.get(1).value.ordinal() == this.cards.get(2).value.ordinal();
 
-		else if (counts.containsValue(3) && !counts.containsValue(2)) {
-			this.ranking = 7; // Three of a Kind
-		}
+    boolean option3 = this.cards.get(2).value.ordinal() == this.cards.get(3).value.ordinal();
 
-		else if (counts.containsValue(2) && !counts.containsValue(4) && !counts.containsValue(3)
-				&& twoPair) {
-			this.ranking = 8; // Two Pair
-		}
+    boolean option4 = this.cards.get(3).value.ordinal() == this.cards.get(4).value.ordinal();
 
-		else if (counts.containsValue(2)) {
-			this.ranking = 9; // One Pair
-		}
-
-		else {
-			this.ranking = 10; // High Card
-		}
-	}
+    return (option1 || option2 || option3 || option4);
+  }
 }
