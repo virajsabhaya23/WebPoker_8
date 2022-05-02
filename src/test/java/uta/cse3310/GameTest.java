@@ -2,15 +2,12 @@ package uta.cse3310;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-
 import static org.junit.Assert.assertEquals;
 
 public class GameTest {
 
   @Test
-  public void addPlayerTest() {
-    ArrayList<Player> players = new ArrayList<>();
+  public void addPlayer() {
     final Game game = new Game();
     Player p = new Player();
     game.addPlayer(p);
@@ -20,8 +17,7 @@ public class GameTest {
   }
 
   @Test
-  public void removePlayerTest() {
-    ArrayList<Player> players = new ArrayList<>();
+  public void removePlayer() {
     final Game game = new Game();
     Player p = new Player();
     game.addPlayer(p);
@@ -32,5 +28,12 @@ public class GameTest {
     game.removePlayer(1);
     game.removePlayer(2);
     assertEquals(0, game.numPlayers);
+  }
+
+  @Test
+  public void testStateExport() {
+    final Game game = new Game();
+
+
   }
 }

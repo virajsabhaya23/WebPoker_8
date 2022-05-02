@@ -52,7 +52,7 @@ public class Hand {
   public int getHighestCard() {
     Collections.sort(this.cards);
     highestCard = this.cards.get(4).getValue().ordinal();
-		return highestCard;
+    return highestCard;
   }
 
   /**

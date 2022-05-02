@@ -1,23 +1,21 @@
 package uta.cse3310;
 
 public class UserEvent {
+  UserEventType event;
+  int playerID;
+  String name;
 
-    public enum UserEventType {
-        NAME, STAND, HIT, CALL, DEAL;
+  public UserEvent() {}
 
-        private UserEventType() {
-        }
-    };
+  public enum UserEventType {
+    NAME,
+    STAND, // aka check
+    HIT, // aka bet
+    CALL,
+    DEAL,
+    JOIN,
+    LEAVE;
 
-    UserEventType event;
-    int playerID;
-    String name;
-    String stand;
-    String hit;
-    String call;
-    String deal;
-
-    public UserEvent() {
-    }
-
+    UserEventType() {}
+  }
 }

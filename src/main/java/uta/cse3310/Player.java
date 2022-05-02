@@ -3,25 +3,25 @@ package uta.cse3310;
 import com.google.gson.Gson;
 
 public class Player {
-    public int Id; // Made Changes here
-    public int Wallet = 100; // Made Changes here
-    String Name;
-    String LastMessageToPlayer;
-    public Hand hand = new Hand();
+  public int id;
+  public int matchID;
+  public int wallet = 100;
+  public Hand hand = new Hand();
+  String playerName;
+  String LastMessageToPlayer;
+  boolean isReady;
 
-    public void Player_ID(int id) {
-        Id = id;
-        Name = "not set";
-    }
+  public void playerID(int id) {
+    playerName = "not set";
+  }
 
-    public void SetName(String N) {
-        Name = N;
-        LastMessageToPlayer = "Welcome " + N + " to the game.";
-//        hand.splitCardsForPlayer(Id);
-    }
+  public void SetName(String name) {
+    playerName = name;
+    LastMessageToPlayer = "Welcome " + name + " to the game.";
+  }
 
-    public String asJSONString() {
-        Gson gson = new Gson();
-        return gson.toJson(this);
-    }
+  public String asJSONString() {
+    Gson gson = new Gson();
+    return gson.toJson(this);
+  }
 }
