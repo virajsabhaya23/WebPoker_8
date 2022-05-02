@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8" />
+
+<head>
+  <title>CSE3310 WebPoker Group 8</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/normalize.css" />
+  <link rel="stylesheet" href="css/skeleton.css" />
+  <!-- <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+</head>
+
+<body>
+  <div class="section header">
+    <div class="container">
+      <div class="row">
+        <h3 class="header-stuff header-heading">UTA Online Poker</h3>
+        <!-- <a class="below-header-stuff" href="#">Home</a> -->
+      </div>
+    </div>
+  </div>
+  <div class="section cards">
+    <div class="button-primary">
+      <!-- <a href="index.jsp"> -->
+      <button class="gm-butts deal-button" type="submit" id="sendNewGame" name="sendNewGame" onclick="newGame()">
+        New Game
+      </button>
+      <button class="gm-butts deal-button" type="submit" id="sendDeal" name="sendDeal" onclick="deal()">
+        Deal
+      </button>
+
+      <!-- </a> -->
+    </div>
+    <div class="container">
+      <div class="row dealer-cards-row">
+        <img class="dealer-cards" id="card0" src="img/0B.svg" />
+        <img class="dealer-cards" id="card1" src="img/0B.svg" />
+        <img class="dealer-cards" id="card2" src="img/0B.svg" />
+        <img class="dealer-cards" id="card3" src="img/0B.svg" />
+        <img class="dealer-cards" id="card4" src="img/0B.svg" />
+      </div>
+    </div>
+  </div>
+
+  <div class="last-third-section section form-name-message">
+    <div class="last-third-section-container container">
+      <div class="last-third-section-left-part hands-ranking-img">
+        <img height="300" src="https://thebestpokersitesonline.com/wp-content/uploads/2021/01/poker-hand-rankings.jpg">
+      </div>
+      <div class="last-third-section-part">
+        <div class="row last-third-section-name-row">
+          <label class="label label-name" for="nameInput">Your Name -</label>
+          <input type="text" id="sendName" />
+          <input class="button-primary" type="button" name="sendName" value="Send" onclick="sendName()" />
+        </div>
+        <div class="row last-third-section-message-row">
+          <label class="label label-message" for="nameInput">Message -</label>
+          <textarea class="" id="send_text"></textarea>
+          <input class="button-primary" type="button" name="send_button" value="Send" onclick="send()" />
+        </div>
+        <div class="last-third-section-gm-butts">
+          <input class="gm-butts call-button" type="button" id="sendCall" name="sendCall" value="Call" onclick="call()">
+          <input class="gm-butts stand-button" type="button" id="sendStand" name="sendStand" value="Stand"
+            onclick="stand()">
+          <input class="gm-butts hit-button" type="button" id="sendHit" name="sendHit" value="Hit" onclick="hit()">
+          <!-- <input type="button" id="sendFold" name="sendFold" value="Fold" onclick="fold()"> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="player-id-section">
+    <div class="player-id-section-class" id="textbox"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
