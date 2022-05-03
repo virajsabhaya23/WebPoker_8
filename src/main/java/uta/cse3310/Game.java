@@ -20,9 +20,6 @@ public class Game {
     ArrayList<Player> players = new ArrayList<>();
     public Deck deck = new Deck();
 
-    // TODO: game states
-    // "lobby" and "session"
-
     public String exportStateAsJSON() {
         Gson gson = new Gson();
         return gson.toJson(this);

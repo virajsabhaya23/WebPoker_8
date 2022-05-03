@@ -63,36 +63,20 @@ function convertCards(cards) {
 }
 // ***************
 
-connection.onopen = function (e) {
+connection.onopen = function () {
 	console.log("connection opened");
 };
 
 connection.onmessage = function (evt) {
-	let msg;
-	msg = evt.data;
-
-	console.log("Message received: ");
-	// document.getElementById("textbox").innerText = document.getElementById("textbox").innerText + '\n\n' + "Message Received" + "\n" + msg;
-
-	// Take the msg and turn it into a javascript object
+	let msg = evt.data;
 	const obj = JSON.parse(msg);
 
-	if (!obj.players) {
-		playerID = obj.Id;
-		console.log(obj)
-		cardLUT = convertCards(obj.hand.cards)
-
+	if (obj.players) {
+		cardLUT = convertCards(obj.players[0].hand.cards);
 		for (var k = 0; k < 5; k++) {
 			// iterate through call to return getElementByID
 			document.getElementById("card" + k).src = cardLUT[k];
 		}
-
-		console.log("player ID = " + playerID);
-		document.getElementById("textbox").innerText =
-			document.getElementById("textbox").innerText +
-			"\n\n" +
-			"Player ID is " +
-			playerID;
 	}
 };
 
@@ -167,16 +151,3 @@ function sendName() {
 	connection.send(JSON.stringify(msg));
 	console.log(JSON.stringify(msg));
 }
-
-// 	// this shows how to hid html elements.
-// 	// like when the name is entered
-// 	//  it might be better to hide after the server has accepted it
-// 	// but this is just a demonstration
-
-// 	var x = document.getElementById("nameInput");
-// 	if (x.style.display === "none") {
-// 		x.style.display = "block";
-// 	} else {
-// 		x.style.display = "none";
-// 	}
-// }

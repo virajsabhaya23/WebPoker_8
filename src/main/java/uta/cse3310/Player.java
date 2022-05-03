@@ -17,10 +17,14 @@ public class Player {
     public void SetName(String N) {
         Name = N;
         LastMessageToPlayer = "Welcome " + N + " to the game.";
-//        hand.splitCardsForPlayer(Id);
     }
 
     public String asJSONString() {
+        Gson gson = new Gson();
+        return gson.toJson(this);
+    }
+
+    public String exportPlayerAsJson() {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
