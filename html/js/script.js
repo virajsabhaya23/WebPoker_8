@@ -50,8 +50,7 @@ this.suitsMap = {
 	DIAMONDS: SUITS.DIAMONDS,
 };
 
-// functioning map/reduce
-// ***************
+
 function convertCard(card) {
 	const number = this.valuesMap[card.value];
 	const suit = this.suitsMap[card.suit];
@@ -61,7 +60,7 @@ function convertCard(card) {
 function convertCards(cards) {
 	return (cards.map(card => this.convertCard(card)));
 }
-// ***************
+
 
 connection.onopen = function () {
 	console.log("connection opened");
@@ -71,13 +70,14 @@ connection.onmessage = function (evt) {
 	let msg = evt.data;
 	const obj = JSON.parse(msg);
 
-	if (obj.players) {
+	if (obj.players && obj.players.length > 0) {
 		cardLUT = convertCards(obj.players[0].hand.cards);
 		for (var k = 0; k < 5; k++) {
 			// iterate through call to return getElementByID
 			document.getElementById("card" + k).src = cardLUT[k];
 		}
 	}
+
 };
 
 connection.onclose = function (event) {
