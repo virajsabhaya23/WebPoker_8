@@ -18,6 +18,7 @@ public class Game {
     int highestNumber = 0;
     int numOwner = 0;
     int winner = -1;
+    boolean gameWon = false;
     ArrayList<Player> players = new ArrayList<>();
     public Deck deck = new Deck();
 
@@ -180,6 +181,7 @@ public class Game {
                     if (round_num == 3) {
                         System.out.println("The Winner is " + numOwner);
                         winner = numOwner;
+                        gameWon = true;
                         System.out.println("Please Leave");
                     } else {
                         System.out.println("Round Complete, Starting next Round now!");
@@ -275,6 +277,7 @@ public class Game {
                     if (round_num == 3) {
                         System.out.println("The Winner is " + numOwner);
                         winner = numOwner;
+                        gameWon = true;
                         System.out.println("Please Leave");
                     } else {
                         System.out.println("Round Complete, Starting next Round now!");
@@ -353,6 +356,7 @@ public class Game {
                     if (round_num == 3) {
                         System.out.println("The Winner is " + numOwner);
                         winner = numOwner;
+                        gameWon = true;
                         System.out.println("Please Leave");
 
                     } else {

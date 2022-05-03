@@ -66,9 +66,14 @@ connection.onopen = function () {
 	console.log("connection opened");
 };
 
+let gameWon;
+let winner;
+let sent = false;
+
 connection.onmessage = function (evt) {
 	let msg = evt.data;
 	const obj = JSON.parse(msg);
+
 
 	if (obj.players && obj.players.length > 0) {
 		cardLUT = convertCards(obj.players[0].hand.cards)
@@ -86,6 +91,15 @@ connection.onmessage = function (evt) {
 			"\n\n" +
 			"Player ID is " +
 			playerID;
+	}
+	if (obj.gameWon && sent == false) {
+		playerID = obj.Id;
+		document.getElementById("textbox").innerText =
+			document.getElementById("textbox").innerText +
+			"\n\n" +
+			"The Winner is " +
+			obj.winner;
+		obj.sent = true;
 	}
 };
 
