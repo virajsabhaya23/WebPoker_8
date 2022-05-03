@@ -77,8 +77,6 @@ public class WebPoker extends WebSocketServer {
     return numPlayers;
   }
 
-  // TODO: game session logic here
-
   @Override
   public void onOpen(WebSocket conn, ClientHandshake handshake) {
 
@@ -107,7 +105,6 @@ public class WebPoker extends WebSocketServer {
       }
     }
 
-    // and as always, we send the game state to everyone
     synchronized (mutex) {
       broadcast(game.exportStateAsJSON());
       System.out.println("the game state" + game.exportStateAsJSON());
@@ -182,7 +179,6 @@ public class WebPoker extends WebSocketServer {
     s.start();
     System.out.println("WebPokerServer started on port: " + s.getPort());
 
-
     // Below code reads from stdin, making for a pleasant way to exit
     BufferedReader sysin = new BufferedReader(new InputStreamReader(System.in));
     while (true) {
@@ -199,8 +195,6 @@ public class WebPoker extends WebSocketServer {
   public void onError(WebSocket conn, Exception ex) {
     ex.printStackTrace();
     if (conn != null) {
-      // some errors like port binding failed may not be assignable to a specific
-      // websocket
     }
   }
 
@@ -211,9 +205,6 @@ public class WebPoker extends WebSocketServer {
     setConnectionLostTimeout(100);
     setNumPlayers(-1);
 
-    // once a second call update
-    // may want to start this in the main() function??
     new java.util.Timer().scheduleAtFixedRate(new upDate(), 0, 1000);
-    System.out.println("You are leaving onStart :)");
   }
 }

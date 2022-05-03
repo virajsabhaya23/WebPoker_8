@@ -17,11 +17,9 @@ public class Game {
     int numPlayers = 0;
     int highestNumber = 0;
     int numOwner = 0;
+    int winner = -1;
     ArrayList<Player> players = new ArrayList<>();
     public Deck deck = new Deck();
-
-    // TODO: game states
-    // "lobby" and "session"
 
     public String exportStateAsJSON() {
         Gson gson = new Gson();
@@ -181,6 +179,7 @@ public class Game {
                 if (player_turn > (numPlayers - 1)) {
                     if (round_num == 3) {
                         System.out.println("The Winner is " + numOwner);
+                        winner = numOwner;
                         System.out.println("Please Leave");
                     } else {
                         System.out.println("Round Complete, Starting next Round now!");
@@ -275,6 +274,7 @@ public class Game {
                 if (player_turn > (numPlayers - 1)) {
                     if (round_num == 3) {
                         System.out.println("The Winner is " + numOwner);
+                        winner = numOwner;
                         System.out.println("Please Leave");
                     } else {
                         System.out.println("Round Complete, Starting next Round now!");
@@ -352,6 +352,7 @@ public class Game {
                 if (player_turn > (numPlayers - 1)) {
                     if (round_num == 3) {
                         System.out.println("The Winner is " + numOwner);
+                        winner = numOwner;
                         System.out.println("Please Leave");
 
                     } else {
