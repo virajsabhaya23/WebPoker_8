@@ -71,13 +71,22 @@ connection.onmessage = function (evt) {
 	const obj = JSON.parse(msg);
 
 	if (obj.players && obj.players.length > 0) {
-		cardLUT = convertCards(obj.players[0].hand.cards);
+		cardLUT = convertCards(obj.players[0].hand.cards)
 		for (var k = 0; k < 5; k++) {
 			// iterate through call to return getElementByID
 			document.getElementById("card" + k).src = cardLUT[k];
 		}
 	}
 
+	if (!obj.players) {
+		playerID = obj.Id;
+		console.log("player ID = " + playerID);
+		document.getElementById("textbox").innerText =
+			document.getElementById("textbox").innerText +
+			"\n\n" +
+			"Player ID is " +
+			playerID;
+	}
 };
 
 connection.onclose = function (event) {
